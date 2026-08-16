@@ -33,9 +33,9 @@ jobs:
         run: |
           # --entry-id: set FPL_ENTRY_ID as a repo variable once you have a squad (see README)
           if [ -n "${{ vars.FPL_ENTRY_ID }}" ]; then
-            python run_weekly.py --entry-id ${{ vars.FPL_ENTRY_ID }} --bank ${{ vars.FPL_BANK || 0.0 }} --free-transfers ${{ vars.FPL_FREE_TRANSFERS || 1 }} --email
+            python run_weekly.py --entry-id ${{ vars.FPL_ENTRY_ID }} --bank ${{ vars.FPL_BANK || 0.0 }} --free-transfers ${{ vars.FPL_FREE_TRANSFERS || 1 }} --risk-mode ${{ vars.FPL_RISK_MODE || 'balanced' }} --email
           else
-            python run_weekly.py --email
+            python run_weekly.py --risk-mode ${{ vars.FPL_RISK_MODE || 'balanced' }} --email
           fi
 
       - name: Commit updated dashboard data

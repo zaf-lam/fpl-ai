@@ -59,8 +59,15 @@ def main():
     if args.squad:
         current_squad_ids = [int(x) for x in args.squad.split(",")]
     elif args.entry_id:
-        picks = data.fetch_my_team(args.entry_id)
-        current_squad_ids = [p["element"] for p in picks["picks"]]
+        try:
+            picks = data.fetch_my_team(args.entry_id)
+            current_squad_ids = [p["element"] for p in picks["picks"]]
+        except Exception as e:
+            print(f"\n[Warning] Could not fetch entry {args.entry_id}'s picks ({e}). "
+                  f"This is expected before the season's first gameweek starts, or if "
+                  f"the FPL API is briefly down. Falling back to a fresh optimal-squad "
+                  f"build instead of transfer advice for this run.")
+            current_squad_ids = None
 
     report = transfer_advisor.build_weekly_report(
         n_gameweeks=args.horizon,
@@ -84,11 +91,17 @@ def main():
     print(f"\nDashboard data written to {out_dir / 'data.json'}")
 
     if args.email:
-        from engine import email_notify
-        email_notify.send_report_email(
-            subject=f"FPL AI Report — Gameweek {report['gameweek']}",
-            text_body=text,
-        )
+        try:
+            from engine import email_notify
+            email_notify.send_report_email(
+                subject=f"FPL AI Report — Gameweek {report['gameweek']}",
+                text_body=text,
+            )
+        except Exception as e:
+            print(f"\n[Warning] Email failed to send ({e}). Check that SMTP_HOST, "
+                  f"SMTP_PORT, SMTP_USER, SMTP_PASS, and EMAIL_TO are all set correctly "
+                  f"under repo Settings -> Secrets and variables -> Actions -> Secrets. "
+                  f"The squad/dashboard data above was still generated successfully.")
 
 
 if __name__ == "__main__":
