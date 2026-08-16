@@ -8,7 +8,7 @@ from . import data, xp_model, optimizer, captain as captain_mod, chip_strategy
 
 def build_weekly_report(entry_id=None, n_gameweeks=5, free_transfers=1, budget_bank=0.0,
                           current_squad_ids=None, total_budget=100.0, chips_available=None,
-                          risk_mode="balanced"):
+                          risk_mode="balanced", banned_ids=None):
     boot = data.load_cached_bootstrap()
     fixtures = data.load_cached_fixtures()
     _, next_gw = xp_model.current_and_next_event_(boot)
@@ -20,7 +20,7 @@ def build_weekly_report(entry_id=None, n_gameweeks=5, free_transfers=1, budget_b
         rec = optimizer.best_transfers(pool, current_squad_ids, budget_bank, free_transfers)
         mode = "transfer_advice"
     else:
-        rec = optimizer.optimize_squad(pool, budget=total_budget)
+        rec = optimizer.optimize_squad(pool, budget=total_budget, banned_ids=banned_ids)
         mode = "initial_squad"
 
     squad = rec["squad"]
@@ -40,14 +40,34 @@ def build_weekly_report(entry_id=None, n_gameweeks=5, free_transfers=1, budget_b
         key=lambda p: -p["xp"]
     )[:8]
 
-    # Double/blank gameweek flags for the squad
+    # Double/blank gameweek flags — checked against the SPECIFIC next gameweek, not the
+    # whole lookahead horizon (a bug in the earlier version flagged nearly every player
+    # as having a "double" simply because they had multiple fixtures somewhere across
+    # the 5-week window).
     dgw_bgw_notes = []
     for p in squad:
         info = xp_table.get(p["id"], {})
-        if info.get("num_fixtures", 1) == 0:
-            dgw_bgw_notes.append(f"{p['name']}: BLANK next window (no fixture) — consider benching/replacing")
-        elif info.get("num_fixtures", 1) >= 2:
-            dgw_bgw_notes.append(f"{p['name']}: DOUBLE gameweek incoming — strong captain/hold candidate")
+        if info.get("next_gw_fixture_count", 1) == 0:
+            dgw_bgw_notes.append(f"{p['name']}: BLANK gameweek {next_gw} — no fixture, "
+                                  f"consider benching/replacing")
+        elif info.get("next_gw_fixture_count", 1) >= 2:
+            dgw_bgw_notes.append(f"{p['name']}: DOUBLE gameweek {next_gw} — plays twice, "
+                                  f"strong captain/hold candidate")
+        # Also surface a heads-up for blanks/doubles later in the horizon (not this week)
+        future_doubles = [gw for gw in info.get("double_gws", []) if gw != next_gw]
+        future_blanks = [gw for gw in info.get("blank_gws", []) if gw != next_gw]
+        if future_doubles:
+            dgw_bgw_notes.append(f"{p['name']}: double gameweek later (GW{future_doubles[0]}) — plan ahead")
+        if future_blanks:
+            dgw_bgw_notes.append(f"{p['name']}: blank later (GW{future_blanks[0]}) — plan ahead")
+
+    # Attach fixture list + confidence info to each squad player so the dashboard can
+    # show club/fixtures/reasoning without a second lookup.
+    for p in squad:
+        info = xp_table.get(p["id"], {})
+        p["fixtures"] = info.get("fixtures", [])
+        p["career_minutes"] = info.get("career_minutes", 0)
+        p["data_confidence"] = info.get("data_confidence", 1.0)
 
     report = {
         "gameweek": next_gw,

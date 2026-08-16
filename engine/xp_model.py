@@ -73,7 +73,7 @@ def fixtures_by_event(fixtures, from_event, n_events):
                                        "fdr": fx.get("team_h_difficulty", 3)})
         by_team[fx["team_a"]].append({"event": ev, "opp": fx["team_h"], "home": False,
                                        "fdr": fx.get("team_a_difficulty", 3)})
-    return by_team
+    return by_team, target_events
 
 
 def playing_prob(player):
@@ -97,6 +97,17 @@ def dc_probability(per90_rate, threshold):
     # squashes to (0,1), centered so ratio=1.0 (average matches threshold) -> ~0.5
     import math
     return 1 / (1 + math.exp(-4 * (ratio - 1)))
+
+
+def confidence_from_minutes(minutes_played):
+    """How much to trust this player's per-90 rate stats. A player with 900+ minutes
+    (~10 full matches) this season/last season gets full trust; a player with very few
+    minutes gets their projection pulled down, since a small sample can produce wildly
+    inflated per-90 numbers that don't reflect a repeatable rate. This directly guards
+    against a fringe player with one good cameo topping the rankings."""
+    m = _f(minutes_played)
+    conf = min(1.0, m / 900.0)
+    return conf
 
 
 def expected_points_for_fixture(player, pos, opp_strength, is_home, scoring=DEFAULT_SCORING,
@@ -158,7 +169,13 @@ def expected_points_for_fixture(player, pos, opp_strength, is_home, scoring=DEFA
     pts += max(0, min(1.2, bps90 / 300))
 
     p_play = playing_prob(player)
-    return max(0.0, pts) * p_play
+    raw_pts = max(0.0, pts) * p_play
+
+    # Shrink low-minutes players toward a conservative baseline instead of trusting
+    # their (possibly tiny-sample) per-90 extrapolation at full strength.
+    confidence = confidence_from_minutes(player.get("minutes"))
+    shrunk_pts = raw_pts * (0.4 + 0.6 * confidence)
+    return shrunk_pts
 
 
 def compute_xp_table(boot, fixtures, n_gameweeks=5, decay=0.9):
@@ -173,7 +190,7 @@ def compute_xp_table(boot, fixtures, n_gameweeks=5, decay=0.9):
     """
     strength, teams = build_team_strength(boot)
     _, nxt = current_and_next_event_(boot)
-    by_team_fixtures = fixtures_by_event(fixtures, nxt, n_gameweeks)
+    by_team_fixtures, target_events = fixtures_by_event(fixtures, nxt, n_gameweeks)
 
     results = {}
     for p in boot["elements"]:
@@ -197,12 +214,30 @@ def compute_xp_table(boot, fixtures, n_gameweeks=5, decay=0.9):
         weighted_total = sum(
             v * (decay ** (gw - nxt)) for gw, v in xp_by_gw.items()
         )
+
+        # Fixture count PER GAMEWEEK (not summed across the whole horizon) — this is
+        # what a double/blank gameweek flag actually needs to check. A team normally
+        # has exactly one fixture per gameweek; 2 = genuine double, 0 = genuine blank.
+        events_with_fixture = defaultdict(int)
+        for fx in fx_list:
+            events_with_fixture[fx["event"]] += 1
+        next_gw_fixture_count = events_with_fixture.get(nxt, 0)
+        double_gws = [ev for ev, c in events_with_fixture.items() if c >= 2]
+        blank_gws = sorted(target_events - set(events_with_fixture.keys()))
+
+        career_minutes = _f(p.get("minutes"))
+        confidence = confidence_from_minutes(career_minutes)
+
         results[p["id"]] = {
             "xp_total": round(sum(xp_by_gw.values()), 2),
             "xp_total_weighted": round(weighted_total, 2),
             "xp_by_gw": {k: round(v, 2) for k, v in xp_by_gw.items()},
             "fixtures": fixture_desc,
-            "num_fixtures": len(fx_list),  # 0 = blank GW risk, 2+ = double GW upside
+            "next_gw_fixture_count": next_gw_fixture_count,   # 2+ = double GW NEXT week specifically
+            "double_gws": double_gws,                          # which future GWs (if any) are doubles
+            "blank_gws": blank_gws,                             # which GWs in horizon have no fixture
+            "career_minutes": int(career_minutes),
+            "data_confidence": round(confidence, 2),            # 0-1, low = thin sample, treat with caution
         }
     return results
 

@@ -46,7 +46,7 @@ def recommend_captaincy(starters, xp_table, next_gw, risk_mode="balanced"):
     for p in starters:
         info = xp_table.get(p["id"], {})
         this_gw_xp = info.get("xp_by_gw", {}).get(next_gw, p.get("xp", 0.0))
-        n_fx = info.get("num_fixtures", 1)
+        n_fx = info.get("next_gw_fixture_count", 1)
         ownership = p.get("selected_by", 0.0)
         score = score_captain_candidate(p, this_gw_xp, n_fx, p["pos"], risk_mode, ownership)
         candidates.append({**p, "captain_score": round(score, 2), "gw_xp": round(this_gw_xp, 2)})

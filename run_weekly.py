@@ -30,7 +30,10 @@ def main():
                      choices=["balanced", "chase", "protect"],
                      help="balanced=pure EV, chase=differential captains for climbing rank, "
                           "protect=template captains for defending rank")
-    ap.add_argument("--email", action="store_true", help="Send the report by email")
+    ap.add_argument("--exclude", type=str, default=None,
+                     help="Comma-separated player IDs to force-exclude (e.g. a backup "
+                          "keeper the model doesn't realize isn't first-choice). Find "
+                          "IDs from the dashboard or FPL's own player pages.")
     ap.add_argument("--no-refresh", action="store_true", help="Use cached data instead of re-fetching")
     args = ap.parse_args()
 
@@ -76,6 +79,7 @@ def main():
         current_squad_ids=current_squad_ids,
         total_budget=args.budget,
         risk_mode=args.risk_mode,
+        banned_ids=[int(x) for x in args.exclude.split(",")] if args.exclude else None,
     )
 
     text = transfer_advisor.format_email_text(report)

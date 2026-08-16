@@ -16,6 +16,7 @@
     --panel:#0f1713;
     --panel-2:#132119;
     --good:#6fd08c;
+    --warn:#e0b84a;
     --bad:#ff6b6b;
     --mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
     --display: 'Oswald', 'Arial Narrow', sans-serif;
@@ -28,45 +29,37 @@
     font-family:var(--body); min-height:100vh;
   }
   header{
-    padding:28px 32px 18px; border-bottom:1px solid var(--pitch-line);
+    padding:24px 32px 16px; border-bottom:1px solid var(--pitch-line);
     display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:10px;
   }
   header h1{
     font-family:var(--display); font-weight:700; letter-spacing:0.5px;
-    font-size:clamp(22px,3vw,32px); margin:0; text-transform:uppercase;
+    font-size:clamp(20px,3vw,28px); margin:0; text-transform:uppercase;
   }
   header h1 span{color:var(--accent);}
   #meta{font-family:var(--mono); color:var(--chalk-dim); font-size:13px;}
-  .wrap{display:grid; grid-template-columns: 1.15fr 0.85fr; gap:0; min-height:calc(100vh - 80px);}
+  .wrap{display:grid; grid-template-columns: 1.1fr 0.9fr; gap:0; align-items:start;}
   @media (max-width: 900px){ .wrap{grid-template-columns:1fr;} }
 
-  /* PITCH */
-  .pitch-col{padding:24px; position:relative;}
+  /* PITCH — sized to content, no wasted space */
+  .pitch-col{padding:20px;}
   .pitch{
     position:relative; border-radius:10px; overflow:hidden;
-    background:
-      repeating-linear-gradient(0deg, var(--pitch) 0px, var(--pitch) 46px, #17402a 46px, #17402a 92px);
+    background: repeating-linear-gradient(0deg, var(--pitch) 0px, var(--pitch) 44px, #17402a 44px, #17402a 88px);
     border:1px solid var(--pitch-line);
-    aspect-ratio: 3 / 4; max-width:620px; margin:0 auto;
+    max-width:600px; margin:0 auto; padding:18px 8px;
+    display:flex; flex-direction:column; gap:4px;
   }
-  .pitch::before{ /* center circle + lines */
-    content:''; position:absolute; inset:14px; border:1.5px solid var(--pitch-line); border-radius:6px;
-  }
-  .pitch::after{
-    content:''; position:absolute; left:50%; top:50%; width:120px; height:120px;
-    border:1.5px solid var(--pitch-line); border-radius:50%; transform:translate(-50%,-50%);
-  }
-  .row{position:relative; display:flex; justify-content:space-evenly; align-items:center;
-       padding:10px 8px; z-index:2;}
+  .row{display:flex; justify-content:space-evenly; align-items:flex-start; gap:4px;}
   .player-chip{
-    display:flex; flex-direction:column; align-items:center; gap:3px; cursor:default;
-    transition:transform .15s ease;
+    display:flex; flex-direction:column; align-items:center; gap:2px; cursor:pointer;
+    transition:transform .15s ease; padding:4px; border-radius:8px; width:76px;
   }
-  .player-chip:hover{transform:translateY(-3px);}
+  .player-chip:hover{transform:translateY(-2px); background:rgba(255,255,255,0.04);}
   .shirt{
-    width:38px; height:38px; border-radius:8px; background:var(--panel-2);
+    width:36px; height:36px; border-radius:8px; background:var(--panel-2);
     border:1.5px solid var(--pitch-line); display:flex; align-items:center; justify-content:center;
-    font-family:var(--mono); font-size:11px; font-weight:600; color:var(--chalk);
+    font-family:var(--mono); font-size:10px; font-weight:600; color:var(--chalk);
     position:relative;
   }
   .player-chip.captain .shirt{ border-color:var(--accent); box-shadow:0 0 0 2px rgba(255,138,61,.25); }
@@ -75,38 +68,68 @@
     font-size:9px; font-weight:700; width:16px; height:16px; border-radius:50%;
     display:flex; align-items:center; justify-content:center; font-family:var(--mono);
   }
-  .pname{font-size:10.5px; color:var(--chalk); max-width:64px; text-align:center; line-height:1.2;}
-  .pxp{font-size:9.5px; color:var(--accent); font-family:var(--mono);}
+  .low-conf-badge{
+    position:absolute; bottom:-6px; left:-6px; background:var(--warn); color:#1a1006;
+    font-size:8px; font-weight:700; width:14px; height:14px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .pname{font-size:10px; color:var(--chalk); text-align:center; line-height:1.2; max-width:76px;}
+  .pclub{font-size:8.5px; color:var(--chalk-dim); font-family:var(--mono); text-transform:uppercase;}
+  .pxp{font-size:9px; color:var(--accent); font-family:var(--mono);}
 
   .bench-strip{
-    max-width:620px; margin:16px auto 0; background:var(--panel); border:1px solid var(--pitch-line);
-    border-radius:8px; padding:12px 16px;
+    max-width:600px; margin:12px auto 0; background:var(--panel); border:1px solid var(--pitch-line);
+    border-radius:8px; padding:10px 14px;
   }
-  .bench-strip h3{margin:0 0 8px; font-family:var(--display); font-size:12px; letter-spacing:1.5px;
+  .bench-strip h3{margin:0 0 8px; font-family:var(--display); font-size:11px; letter-spacing:1.5px;
     text-transform:uppercase; color:var(--chalk-dim);}
-  .bench-row{display:flex; gap:18px; flex-wrap:wrap;}
+  .bench-row{display:flex; gap:14px; flex-wrap:wrap;}
 
   /* SIDEBAR */
-  .side{background:var(--panel); border-left:1px solid var(--pitch-line); padding:24px;
-        display:flex; flex-direction:column; gap:20px;}
-  .card{background:var(--panel-2); border:1px solid var(--pitch-line); border-radius:10px; padding:16px 18px;}
-  .card h2{font-family:var(--display); font-size:13px; text-transform:uppercase; letter-spacing:1.5px;
-           margin:0 0 12px; color:var(--chalk-dim);}
-  .stat-row{display:flex; justify-content:space-between; padding:6px 0; font-size:14px;
+  .side{background:var(--panel); border-left:1px solid var(--pitch-line); padding:20px;
+        display:flex; flex-direction:column; gap:16px;}
+  .card{background:var(--panel-2); border:1px solid var(--pitch-line); border-radius:10px; padding:14px 16px;}
+  .card h2{font-family:var(--display); font-size:12px; text-transform:uppercase; letter-spacing:1.5px;
+           margin:0 0 10px; color:var(--chalk-dim);}
+  .stat-row{display:flex; justify-content:space-between; padding:5px 0; font-size:13.5px;
             border-bottom:1px dashed rgba(255,255,255,0.06);}
   .stat-row:last-child{border-bottom:none;}
   .stat-row b{font-family:var(--mono); color:var(--chalk);}
   .rec{border-left:3px solid var(--accent); padding:10px 12px; background:rgba(255,138,61,0.07);
-       border-radius:0 6px 6px 0; font-size:14px; line-height:1.5;}
+       border-radius:0 6px 6px 0; font-size:13.5px; line-height:1.5;}
   .rec.hold{border-left-color:var(--chalk-dim); background:rgba(255,255,255,0.03);}
-  .flag{font-size:13px; color:var(--chalk-dim); padding:6px 0; border-bottom:1px dashed rgba(255,255,255,0.06);}
-  .diff-item{display:flex; justify-content:space-between; font-size:13px; padding:6px 0;
+  .flag{font-size:12.5px; color:var(--chalk-dim); padding:5px 0; border-bottom:1px dashed rgba(255,255,255,0.06);}
+  .diff-item{display:flex; justify-content:space-between; font-size:12.5px; padding:5px 0;
              border-bottom:1px dashed rgba(255,255,255,0.06);}
-  .diff-item .own{color:var(--chalk-dim); font-family:var(--mono); font-size:12px;}
+  .diff-item .own{color:var(--chalk-dim); font-family:var(--mono); font-size:11.5px;}
   .empty{color:var(--chalk-dim); font-size:13px; padding:20px; text-align:center;}
-  .pill{display:inline-block; padding:2px 8px; border-radius:20px; font-size:11px;
-        font-family:var(--mono); background:rgba(111,208,140,0.15); color:var(--good);}
-  footer{padding:18px 32px; color:var(--chalk-dim); font-size:12px; font-family:var(--mono);
+
+  /* PLAYER DETAIL PANEL (click a chip) */
+  .detail-overlay{
+    position:fixed; inset:0; background:rgba(0,0,0,0.55); display:none;
+    align-items:center; justify-content:center; z-index:50; padding:20px;
+  }
+  .detail-overlay.open{display:flex;}
+  .detail-card{
+    background:var(--panel-2); border:1px solid var(--pitch-line); border-radius:12px;
+    padding:22px; max-width:420px; width:100%; max-height:80vh; overflow-y:auto;
+  }
+  .detail-card h3{margin:0 0 2px; font-family:var(--display); font-size:20px; text-transform:uppercase;}
+  .detail-sub{color:var(--chalk-dim); font-family:var(--mono); font-size:12px; margin-bottom:14px;}
+  .detail-stats{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:16px;}
+  .dstat{background:var(--panel); border-radius:6px; padding:8px 10px;}
+  .dstat .k{font-size:10px; color:var(--chalk-dim); text-transform:uppercase; letter-spacing:0.5px;}
+  .dstat .v{font-family:var(--mono); font-size:15px; margin-top:2px;}
+  .conf-warning{background:rgba(224,184,74,0.12); border-left:3px solid var(--warn); padding:8px 10px;
+                border-radius:0 6px 6px 0; font-size:12.5px; margin-bottom:14px; line-height:1.4;}
+  .fixture-list h4{font-size:11px; text-transform:uppercase; color:var(--chalk-dim); margin:0 0 8px;
+                    letter-spacing:1px;}
+  .fixture-row{display:flex; justify-content:space-between; font-size:13px; padding:5px 0;
+               border-bottom:1px dashed rgba(255,255,255,0.06);}
+  .fdr-1, .fdr-2{color:var(--good);} .fdr-3{color:var(--warn);} .fdr-4, .fdr-5{color:var(--bad);}
+  .close-btn{float:right; background:none; border:none; color:var(--chalk-dim); font-size:20px;
+             cursor:pointer; line-height:1;}
+  footer{padding:16px 32px; color:var(--chalk-dim); font-size:11.5px; font-family:var(--mono);
          border-top:1px solid var(--pitch-line);}
 </style>
 </head>
@@ -145,10 +168,15 @@
   </div>
 </div>
 
-<footer>Data: official FPL API · Model: xG/xA + fixture-adjusted expected points · Regenerated weekly</footer>
+<footer>Data: official FPL API · Model: xG/xA + fixture-adjusted expected points · Click any player for the reasoning behind their pick · Regenerated weekly</footer>
+
+<div class="detail-overlay" id="detailOverlay">
+  <div class="detail-card" id="detailCard"></div>
+</div>
 
 <script>
 const POS_ORDER = {GKP:0, DEF:1, MID:2, FWD:3};
+let PLAYER_INDEX = {};
 
 async function load() {
   let data;
@@ -165,15 +193,55 @@ async function load() {
 
 function chip(p) {
   const cap = p.captain ? ' captain' : '';
-  return `<div class="player-chip${cap}">
-      <div class="shirt">${p.pos}${p.captain ? '<div class="cbadge">C</div>' : ''}</div>
+  const lowConf = (p.data_confidence !== undefined && p.data_confidence < 0.4);
+  return `<div class="player-chip${cap}" onclick="showDetail(${p.id})">
+      <div class="shirt">${p.pos}${p.captain ? '<div class="cbadge">C</div>' : ''}${lowConf ? '<div class="low-conf-badge" title="Thin data sample — treat with caution">!</div>' : ''}</div>
       <div class="pname">${p.name}</div>
+      <div class="pclub">${p.team_name || ''}</div>
       <div class="pxp">${p.xp.toFixed(1)} xP</div>
     </div>`;
 }
 
+function fdrClass(fdr) { return 'fdr-' + fdr; }
+
+function showDetail(id) {
+  const p = PLAYER_INDEX[id];
+  if (!p) return;
+  const conf = p.data_confidence !== undefined ? p.data_confidence : 1.0;
+  const confPct = Math.round(conf * 100);
+  const fixturesHtml = (p.fixtures || []).map(f =>
+    `<div class="fixture-row"><span>GW${f.gw} vs ${f.opponent} (${f.home ? 'H' : 'A'})</span>
+     <span class="${fdrClass(f.fdr)}">FDR ${f.fdr} · ${f.xp.toFixed(1)} xP</span></div>`
+  ).join('') || '<div class="fixture-row"><span>No fixture data</span></div>';
+
+  document.getElementById('detailCard').innerHTML = `
+    <button class="close-btn" onclick="closeDetail()">×</button>
+    <h3>${p.name}</h3>
+    <div class="detail-sub">${p.team_name || ''} · ${p.pos} · £${p.cost}m</div>
+    ${conf < 0.5 ? `<div class="conf-warning">⚠ Low data confidence (${confPct}%) — this player has a thin minutes sample (${p.career_minutes || 0} career mins), so the projection is less reliable than usual. Worth checking team news before trusting this pick.</div>` : ''}
+    <div class="detail-stats">
+      <div class="dstat"><div class="k">Expected pts (horizon)</div><div class="v">${p.xp.toFixed(1)}</div></div>
+      <div class="dstat"><div class="k">Ownership</div><div class="v">${(p.selected_by || 0).toFixed(1)}%</div></div>
+      <div class="dstat"><div class="k">Cost</div><div class="v">£${p.cost}m</div></div>
+      <div class="dstat"><div class="k">Data confidence</div><div class="v">${confPct}%</div></div>
+    </div>
+    <div class="fixture-list">
+      <h4>Upcoming Fixtures</h4>
+      ${fixturesHtml}
+    </div>
+  `;
+  document.getElementById('detailOverlay').classList.add('open');
+}
+function closeDetail() { document.getElementById('detailOverlay').classList.remove('open'); }
+document.getElementById('detailOverlay').addEventListener('click', (e) => {
+  if (e.target.id === 'detailOverlay') closeDetail();
+});
+
 function render(d) {
   document.getElementById('meta').textContent = `Gameweek ${d.gameweek} · £${d.total_cost}m spent · £${d.budget_left}m in bank`;
+
+  PLAYER_INDEX = {};
+  (d.squad || []).forEach(p => PLAYER_INDEX[p.id] = p);
 
   const starters = d.starters.slice().sort((a,b)=>POS_ORDER[a.pos]-POS_ORDER[b.pos]);
   const rows = {GKP:[], DEF:[], MID:[], FWD:[]};
@@ -181,7 +249,7 @@ function render(d) {
 
   const pitch = document.getElementById('pitch');
   pitch.innerHTML = ['FWD','MID','DEF','GKP'].map(pos =>
-    `<div class="row">${rows[pos].map(chip).join('')}</div>`
+    rows[pos].length ? `<div class="row">${rows[pos].map(chip).join('')}</div>` : ''
   ).join('');
 
   document.getElementById('bench').innerHTML = d.bench
@@ -201,7 +269,7 @@ function render(d) {
     document.getElementById('rec').innerHTML = `
       <div class="rec ${worth ? '' : 'hold'}">
         ${worth
-          ? `Make <b>${d.transfers_made}</b> transfer(s) this week (hit: -${d.hit_cost} pts).<br>Net expected gain: <span class="pill">+${d.net_gain.toFixed(1)} pts</span> over the horizon.`
+          ? `Make <b>${d.transfers_made}</b> transfer(s) this week (hit: -${d.hit_cost} pts).<br>Net expected gain: +${d.net_gain.toFixed(1)} pts over the horizon.`
           : `Hold your squad — no transfer clears the value bar this week.`}
       </div>`;
   }
