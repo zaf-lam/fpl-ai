@@ -98,6 +98,33 @@ tolerance, and plain variance over 38 gameweeks. Treat its output as a strong,
 data-backed starting point each week — sanity-check injury news right before your
 deadline, since team news often lands in the hour before kickoff.
 
+## v1.1 additions
+
+- **Time-decayed multi-horizon optimization** — the squad optimizer now maximizes a
+  decay-weighted xP total (`xp_total_weighted` in `xp_model.py`) instead of a flat sum,
+  so a player with one great fixture buried among four bad ones no longer gets
+  overvalued.
+- **`engine/captain.py`** — composite captain scoring (xP + ceiling estimate + double
+  gameweek boost), not just "pick the highest-xP starter."
+- **`engine/chip_strategy.py`** — detects double/blank gameweeks from the fixtures you
+  already fetch and recommends Wildcard / Free Hit / Bench Boost / Triple Captain
+  timing. Zero new data sources required.
+
+### What I deliberately did NOT add, and why
+
+If you've seen "blueprints" suggesting Understat/FBref scraping and a trained
+RandomForest/XGBoost ensemble — skip them for this project:
+- FPL's own API already returns Opta-sourced `expected_goals_per_90` /
+  `expected_assists_per_90` per player, which is what those scrapers would get you
+  anyway, with extra fragility (both sites actively rate-limit/block bots).
+- A trained ML ensemble needs multi-season historical data and an ongoing retraining
+  pipeline to avoid overfitting — a real project on its own, and with under a season
+  of clean data it's likely to underperform a well-calibrated formula like this one.
+  The formula-based model here is transparent and debuggable, which matters more than
+  a black box at this scale.
+- The optimizer already solves a true mixed-integer linear program (PuLP/CBC) — that
+  was never the bottleneck.
+
 ## Tuning
 
 - `--horizon 5` — how many gameweeks ahead to optimize for (raise for wildcard

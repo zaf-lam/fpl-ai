@@ -161,8 +161,16 @@ def expected_points_for_fixture(player, pos, opp_strength, is_home, scoring=DEFA
     return max(0.0, pts) * p_play
 
 
-def compute_xp_table(boot, fixtures, n_gameweeks=5):
-    """Returns {player_id: {'xp_total':..., 'xp_by_gw': {gw: pts}, 'fixtures': [...]}}"""
+def compute_xp_table(boot, fixtures, n_gameweeks=5, decay=0.9):
+    """Returns {player_id: {'xp_total':..., 'xp_total_weighted':..., 'xp_by_gw': {gw: pts},
+    'fixtures': [...]}}
+
+    `decay` applies a time-decay weight to gameweeks further in the future when computing
+    xp_total_weighted (GW+0 = 1.0, GW+1 = decay, GW+2 = decay^2, ...). This is what the
+    optimizer should actually maximize for multi-week squad building: it stops the model
+    from overvaluing a player with one great fixture buried among four terrible ones.
+    xp_total (undiscounted sum) is kept too, for display purposes.
+    """
     strength, teams = build_team_strength(boot)
     _, nxt = current_and_next_event_(boot)
     by_team_fixtures = fixtures_by_event(fixtures, nxt, n_gameweeks)
@@ -186,8 +194,12 @@ def compute_xp_table(boot, fixtures, n_gameweeks=5):
                 "fdr": fx["fdr"],
                 "xp": round(pts, 2),
             })
+        weighted_total = sum(
+            v * (decay ** (gw - nxt)) for gw, v in xp_by_gw.items()
+        )
         results[p["id"]] = {
             "xp_total": round(sum(xp_by_gw.values()), 2),
+            "xp_total_weighted": round(weighted_total, 2),
             "xp_by_gw": {k: round(v, 2) for k, v in xp_by_gw.items()},
             "fixtures": fixture_desc,
             "num_fixtures": len(fx_list),  # 0 = blank GW risk, 2+ = double GW upside

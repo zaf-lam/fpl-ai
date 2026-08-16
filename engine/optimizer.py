@@ -22,7 +22,11 @@ def build_player_pool(boot, xp_table, exclude_unavailable=True):
     for p in boot["elements"]:
         if exclude_unavailable and p.get("status") == "u":  # left the league / unavailable
             continue
-        xp = xp_table.get(p["id"], {}).get("xp_total", 0.0)
+        info = xp_table.get(p["id"], {})
+        # Optimize on the time-decayed multi-gameweek total, not the raw sum — this is
+        # what stops the solver overvaluing a player with one great week buried among
+        # four bad ones. Falls back to xp_total for older cached data without the field.
+        xp = info.get("xp_total_weighted", info.get("xp_total", 0.0))
         pool.append({
             "id": p["id"],
             "name": p["web_name"],

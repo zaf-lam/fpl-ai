@@ -3,11 +3,12 @@ transfer_advisor.py — produces the actual weekly output: who to captain, who t
 transfer in/out (if worth it after the -4 hit), differentials to watch, and
 chip suggestions (wildcard / bench boost / triple captain / free hit).
 """
-from . import data, xp_model, optimizer
+from . import data, xp_model, optimizer, captain as captain_mod, chip_strategy
 
 
 def build_weekly_report(entry_id=None, n_gameweeks=5, free_transfers=1, budget_bank=0.0,
-                          current_squad_ids=None, total_budget=100.0):
+                          current_squad_ids=None, total_budget=100.0, chips_available=None,
+                          risk_mode="balanced"):
     boot = data.load_cached_bootstrap()
     fixtures = data.load_cached_fixtures()
     _, next_gw = xp_model.current_and_next_event_(boot)
@@ -25,8 +26,13 @@ def build_weekly_report(entry_id=None, n_gameweeks=5, free_transfers=1, budget_b
     squad = rec["squad"]
     starters = [p for p in squad if p["starting"]]
     bench = [p for p in squad if not p["starting"]]
-    captain = next((p for p in squad if p.get("captain")), None)
-    vice = sorted([p for p in starters if not p.get("captain")], key=lambda p: -p["xp"])[0] if starters else None
+
+    # Composite captain scoring (xP + ceiling + DGW boost) instead of raw highest-xP
+    captain, vice, captain_ranked = captain_mod.recommend_captaincy(starters, xp_table, next_gw, risk_mode)
+    for p in squad:
+        p["captain"] = (captain is not None and p["id"] == captain["id"])
+
+    chip_rec = chip_strategy.recommend_chip(squad, fixtures, next_gw, chips_available)
 
     # Differentials: low ownership, high xP — useful for climbing ranks fast
     differentials = sorted(
@@ -56,6 +62,8 @@ def build_weekly_report(entry_id=None, n_gameweeks=5, free_transfers=1, budget_b
         "budget_left": rec["budget_left"],
         "differentials": differentials,
         "flags": dgw_bgw_notes,
+        "captain_alternatives": captain_ranked,
+        "chip_recommendation": chip_rec,
     }
     if mode == "transfer_advice":
         report["transfers_made"] = rec["transfers_made"]
@@ -78,6 +86,9 @@ def format_email_text(report):
     lines.append(f"Captain: {report['captain']['name']} ({report['captain']['xp']:.1f} xP)")
     if report["vice_captain"]:
         lines.append(f"Vice-captain: {report['vice_captain']['name']}")
+    chip = report.get("chip_recommendation")
+    if chip and chip.get("chip"):
+        lines.append(f"Chip suggestion: {chip['chip'].replace('_',' ').title()} — {chip['rationale']}")
     lines.append(f"Predicted points (starting XI + captain): {report['predicted_points']:.1f}")
     lines.append("")
     lines.append("Starting XI:")

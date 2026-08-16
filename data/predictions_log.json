@@ -1,0 +1,79 @@
+[
+  {
+    "gameweek": 1,
+    "logged_at": "2026-08-16T08:02:30.755240+00:00",
+    "predicted_points": 240.5,
+    "captain_id": 508,
+    "captain_name": "Davies",
+    "starters": [
+      {
+        "id": 199,
+        "name": "Benitez",
+        "pos": "GKP",
+        "predicted_xp": 15.25
+      },
+      {
+        "id": 508,
+        "name": "Davies",
+        "pos": "DEF",
+        "predicted_xp": 24.02
+      },
+      {
+        "id": 130,
+        "name": "Wieffer",
+        "pos": "DEF",
+        "predicted_xp": 19.99
+      },
+      {
+        "id": 8,
+        "name": "Calafiori",
+        "pos": "DEF",
+        "predicted_xp": 19.72
+      },
+      {
+        "id": 4,
+        "name": "Gabriel",
+        "pos": "DEF",
+        "predicted_xp": 19.0
+      },
+      {
+        "id": 100,
+        "name": "Carvalho",
+        "pos": "MID",
+        "predicted_xp": 21.34
+      },
+      {
+        "id": 426,
+        "name": "B.Fernandes",
+        "pos": "MID",
+        "predicted_xp": 20.67
+      },
+      {
+        "id": 12,
+        "name": "Saka",
+        "pos": "MID",
+        "predicted_xp": 19.9
+      },
+      {
+        "id": 154,
+        "name": "Palmer",
+        "pos": "MID",
+        "predicted_xp": 19.9
+      },
+      {
+        "id": 427,
+        "name": "Mbeumo",
+        "pos": "MID",
+        "predicted_xp": 18.92
+      },
+      {
+        "id": 223,
+        "name": "Mateta",
+        "pos": "FWD",
+        "predicted_xp": 17.77
+      }
+    ],
+    "actual_points": null,
+    "actual_by_player": null
+  }
+]

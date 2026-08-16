@@ -34,18 +34,27 @@ def fetch_fixtures():
 
 
 def fetch_my_team(entry_id, event=None):
-    """Your current squad. entry_id = the number in the URL when you view your FPL team."""
+    """Your current squad. entry_id = the number in the URL when you view your FPL team.
+    Before the season's first gameweek finishes, there is no 'current' event yet — only
+    a 'next' one — so we fall back to that (your saved picks for the upcoming gameweek)."""
     if event:
         url = f"{BASE}/entry/{entry_id}/event/{event}/picks/"
     else:
         boot = load_cached_bootstrap()
-        current_event = next(e["id"] for e in boot["events"] if e.get("is_current"))
-        url = f"{BASE}/entry/{entry_id}/event/{current_event}/picks/"
+        events = boot["events"]
+        target = next((e for e in events if e.get("is_current")), None)
+        if target is None:
+            target = next((e for e in events if e.get("is_next")), None)
+        if target is None:
+            target = next(e for e in events if not e["finished"])
+        url = f"{BASE}/entry/{entry_id}/event/{target['id']}/picks/"
     return _get(url)
 
 
-def fetch_entry_history(entry_id):
-    return _get(f"{BASE}/entry/{entry_id}/history/")
+def fetch_event_live(event_id):
+    """Actual points scored by every player in a specific (usually just-finished) gameweek."""
+    data = _get(f"{BASE}/event/{event_id}/live/")
+    return data
 
 
 def load_cached_bootstrap():

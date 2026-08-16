@@ -13,7 +13,7 @@ import json
 import os
 from pathlib import Path
 
-from engine import data, transfer_advisor
+from engine import data, transfer_advisor, tracking
 
 ROOT = Path(__file__).parent
 
@@ -26,6 +26,10 @@ def main():
     ap.add_argument("--free-transfers", type=int, default=1)
     ap.add_argument("--budget", type=float, default=100.0, help="Total budget for initial squad build")
     ap.add_argument("--horizon", type=int, default=5, help="Gameweeks to look ahead")
+    ap.add_argument("--risk-mode", type=str, default="balanced",
+                     choices=["balanced", "chase", "protect"],
+                     help="balanced=pure EV, chase=differential captains for climbing rank, "
+                          "protect=template captains for defending rank")
     ap.add_argument("--email", action="store_true", help="Send the report by email")
     ap.add_argument("--no-refresh", action="store_true", help="Use cached data instead of re-fetching")
     args = ap.parse_args()
@@ -34,6 +38,22 @@ def main():
         print("Fetching live FPL data...")
         data.fetch_bootstrap()
         data.fetch_fixtures()
+
+    boot = data.load_cached_bootstrap()
+
+    # Reconcile any past predictions whose gameweek has now finished — this is the
+    # feedback loop that tells you whether the model is actually any good.
+    newly_reconciled = tracking.reconcile_pending(boot, data.fetch_event_live)
+    for entry in newly_reconciled:
+        diff = entry["actual_points"] - entry["predicted_points"]
+        print(f"\n[Calibration] GW{entry['gameweek']}: predicted {entry['predicted_points']:.1f}, "
+              f"actual {entry['actual_points']}, diff {diff:+.1f}")
+    calib = tracking.calibration_summary()
+    if calib:
+        print(f"[Calibration] Last {len(calib['gameweeks_covered'])} GWs — "
+              f"mean absolute error/player: {calib['overall_mae']}, "
+              f"bias: {calib['overall_bias']:+.2f} "
+              f"({'model under-predicts' if calib['overall_bias'] > 0 else 'model over-predicts'})")
 
     current_squad_ids = None
     if args.squad:
@@ -48,10 +68,14 @@ def main():
         budget_bank=args.bank,
         current_squad_ids=current_squad_ids,
         total_budget=args.budget,
+        risk_mode=args.risk_mode,
     )
 
     text = transfer_advisor.format_email_text(report)
-    print(text)
+    print("\n" + text)
+
+    # Log this week's prediction so it can be checked against reality next run
+    tracking.log_prediction(report)
 
     # Write dashboard data (consumed by dashboard/index.html)
     out_dir = ROOT / "dashboard"
