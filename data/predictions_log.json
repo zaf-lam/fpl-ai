@@ -1,22 +1,16 @@
 [
   {
     "gameweek": 1,
-    "logged_at": "2026-08-16T08:18:41.670899+00:00",
-    "predicted_points": 240.5,
-    "captain_id": 508,
-    "captain_name": "Davies",
+    "logged_at": "2026-08-16T08:47:53.614236+00:00",
+    "predicted_points": 227.6,
+    "captain_id": 426,
+    "captain_name": "B.Fernandes",
     "starters": [
       {
-        "id": 199,
-        "name": "Benitez",
+        "id": 442,
+        "name": "Pope",
         "pos": "GKP",
-        "predicted_xp": 15.25
-      },
-      {
-        "id": 508,
-        "name": "Davies",
-        "pos": "DEF",
-        "predicted_xp": 24.02
+        "predicted_xp": 15.26
       },
       {
         "id": 130,
@@ -37,10 +31,10 @@
         "predicted_xp": 19.0
       },
       {
-        "id": 100,
-        "name": "Carvalho",
-        "pos": "MID",
-        "predicted_xp": 21.34
+        "id": 269,
+        "name": "Sessegnon",
+        "pos": "DEF",
+        "predicted_xp": 17.25
       },
       {
         "id": 426,
@@ -65,6 +59,12 @@
         "name": "Mbeumo",
         "pos": "MID",
         "predicted_xp": 18.92
+      },
+      {
+        "id": 155,
+        "name": "Enzo",
+        "pos": "MID",
+        "predicted_xp": 18.53
       },
       {
         "id": 223,

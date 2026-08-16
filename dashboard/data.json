@@ -3,46 +3,110 @@
   "mode": "initial_squad",
   "squad": [
     {
-      "id": 199,
-      "name": "Benitez",
-      "team": 8,
-      "team_name": "CRY",
+      "id": 442,
+      "name": "Pope",
+      "team": 17,
+      "team_name": "NEW",
       "pos": "GKP",
-      "cost": 4.5,
-      "xp": 15.25,
-      "selected_by": 0.1,
+      "cost": 5.0,
+      "xp": 15.26,
+      "selected_by": 1.2,
       "status": "a",
       "news": "",
       "starting": true,
-      "captain": false
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "LIV",
+          "home": true,
+          "fdr": 4,
+          "xp": 3.73
+        },
+        {
+          "gw": 2,
+          "opponent": "TOT",
+          "home": false,
+          "fdr": 3,
+          "xp": 3.73
+        },
+        {
+          "gw": 3,
+          "opponent": "BOU",
+          "home": true,
+          "fdr": 3,
+          "xp": 3.73
+        },
+        {
+          "gw": 4,
+          "opponent": "LEE",
+          "home": false,
+          "fdr": 3,
+          "xp": 3.73
+        },
+        {
+          "gw": 5,
+          "opponent": "HUL",
+          "home": true,
+          "fdr": 2,
+          "xp": 3.73
+        }
+      ],
+      "career_minutes": 2416,
+      "data_confidence": 1.0
     },
     {
-      "id": 496,
-      "name": "Kinsky",
+      "id": 497,
+      "name": "Dubravka",
       "team": 19,
       "team_name": "TOT",
       "pos": "GKP",
-      "cost": 4.5,
-      "xp": 14.66,
-      "selected_by": 19.8,
+      "cost": 4.0,
+      "xp": 10.88,
+      "selected_by": 22.3,
       "status": "a",
       "news": "",
       "starting": false,
-      "captain": false
-    },
-    {
-      "id": 508,
-      "name": "Davies",
-      "team": 19,
-      "team_name": "TOT",
-      "pos": "DEF",
-      "cost": 4.0,
-      "xp": 24.02,
-      "selected_by": 0.9,
-      "status": "a",
-      "news": "",
-      "starting": true,
-      "captain": true
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "BRE",
+          "home": false,
+          "fdr": 3,
+          "xp": 2.66
+        },
+        {
+          "gw": 2,
+          "opponent": "NEW",
+          "home": true,
+          "fdr": 2,
+          "xp": 2.66
+        },
+        {
+          "gw": 3,
+          "opponent": "NFO",
+          "home": false,
+          "fdr": 3,
+          "xp": 2.66
+        },
+        {
+          "gw": 4,
+          "opponent": "EVE",
+          "home": true,
+          "fdr": 3,
+          "xp": 2.66
+        },
+        {
+          "gw": 5,
+          "opponent": "AVL",
+          "home": true,
+          "fdr": 3,
+          "xp": 2.66
+        }
+      ],
+      "career_minutes": 3150,
+      "data_confidence": 1.0
     },
     {
       "id": 130,
@@ -56,7 +120,46 @@
       "status": "a",
       "news": "",
       "starting": true,
-      "captain": false
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "AVL",
+          "home": true,
+          "fdr": 3,
+          "xp": 4.88
+        },
+        {
+          "gw": 2,
+          "opponent": "CHE",
+          "home": false,
+          "fdr": 4,
+          "xp": 4.88
+        },
+        {
+          "gw": 3,
+          "opponent": "LEE",
+          "home": true,
+          "fdr": 2,
+          "xp": 4.88
+        },
+        {
+          "gw": 4,
+          "opponent": "COV",
+          "home": false,
+          "fdr": 2,
+          "xp": 4.88
+        },
+        {
+          "gw": 5,
+          "opponent": "ARS",
+          "home": true,
+          "fdr": 4,
+          "xp": 4.88
+        }
+      ],
+      "career_minutes": 1901,
+      "data_confidence": 1.0
     },
     {
       "id": 8,
@@ -70,7 +173,46 @@
       "status": "a",
       "news": "",
       "starting": true,
-      "captain": false
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "COV",
+          "home": true,
+          "fdr": 2,
+          "xp": 4.81
+        },
+        {
+          "gw": 2,
+          "opponent": "AVL",
+          "home": false,
+          "fdr": 4,
+          "xp": 4.81
+        },
+        {
+          "gw": 3,
+          "opponent": "CHE",
+          "home": true,
+          "fdr": 4,
+          "xp": 4.81
+        },
+        {
+          "gw": 4,
+          "opponent": "SUN",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.81
+        },
+        {
+          "gw": 5,
+          "opponent": "BHA",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.81
+        }
+      ],
+      "career_minutes": 1697,
+      "data_confidence": 1.0
     },
     {
       "id": 4,
@@ -84,7 +226,46 @@
       "status": "a",
       "news": "",
       "starting": true,
-      "captain": false
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "COV",
+          "home": true,
+          "fdr": 2,
+          "xp": 4.64
+        },
+        {
+          "gw": 2,
+          "opponent": "AVL",
+          "home": false,
+          "fdr": 4,
+          "xp": 4.64
+        },
+        {
+          "gw": 3,
+          "opponent": "CHE",
+          "home": true,
+          "fdr": 4,
+          "xp": 4.64
+        },
+        {
+          "gw": 4,
+          "opponent": "SUN",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.64
+        },
+        {
+          "gw": 5,
+          "opponent": "BHA",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.64
+        }
+      ],
+      "career_minutes": 2750,
+      "data_confidence": 1.0
     },
     {
       "id": 269,
@@ -97,22 +278,100 @@
       "selected_by": 0.4,
       "status": "a",
       "news": "",
-      "starting": false,
-      "captain": false
+      "starting": true,
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "CHE",
+          "home": true,
+          "fdr": 4,
+          "xp": 4.21
+        },
+        {
+          "gw": 2,
+          "opponent": "SUN",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.21
+        },
+        {
+          "gw": 3,
+          "opponent": "CRY",
+          "home": true,
+          "fdr": 3,
+          "xp": 4.21
+        },
+        {
+          "gw": 4,
+          "opponent": "LIV",
+          "home": false,
+          "fdr": 4,
+          "xp": 4.21
+        },
+        {
+          "gw": 5,
+          "opponent": "MUN",
+          "home": true,
+          "fdr": 4,
+          "xp": 4.21
+        }
+      ],
+      "career_minutes": 1816,
+      "data_confidence": 1.0
     },
     {
-      "id": 100,
-      "name": "Carvalho",
-      "team": 4,
-      "team_name": "BRE",
-      "pos": "MID",
-      "cost": 5.0,
-      "xp": 21.34,
+      "id": 255,
+      "name": "J.Cuenca",
+      "team": 10,
+      "team_name": "FUL",
+      "pos": "DEF",
+      "cost": 4.5,
+      "xp": 15.03,
       "selected_by": 0.0,
       "status": "a",
       "news": "",
-      "starting": true,
-      "captain": false
+      "starting": false,
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "CHE",
+          "home": true,
+          "fdr": 4,
+          "xp": 3.67
+        },
+        {
+          "gw": 2,
+          "opponent": "SUN",
+          "home": false,
+          "fdr": 3,
+          "xp": 3.67
+        },
+        {
+          "gw": 3,
+          "opponent": "CRY",
+          "home": true,
+          "fdr": 3,
+          "xp": 3.67
+        },
+        {
+          "gw": 4,
+          "opponent": "LIV",
+          "home": false,
+          "fdr": 4,
+          "xp": 3.67
+        },
+        {
+          "gw": 5,
+          "opponent": "MUN",
+          "home": true,
+          "fdr": 4,
+          "xp": 3.67
+        }
+      ],
+      "career_minutes": 935,
+      "data_confidence": 1.0
     },
     {
       "id": 426,
@@ -126,7 +385,46 @@
       "status": "a",
       "news": "",
       "starting": true,
-      "captain": false
+      "captain": true,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "HUL",
+          "home": false,
+          "fdr": 2,
+          "xp": 5.05
+        },
+        {
+          "gw": 2,
+          "opponent": "IPS",
+          "home": true,
+          "fdr": 2,
+          "xp": 5.05
+        },
+        {
+          "gw": 3,
+          "opponent": "EVE",
+          "home": false,
+          "fdr": 3,
+          "xp": 5.05
+        },
+        {
+          "gw": 4,
+          "opponent": "MCI",
+          "home": true,
+          "fdr": 4,
+          "xp": 5.05
+        },
+        {
+          "gw": 5,
+          "opponent": "FUL",
+          "home": false,
+          "fdr": 3,
+          "xp": 5.05
+        }
+      ],
+      "career_minutes": 3065,
+      "data_confidence": 1.0
     },
     {
       "id": 12,
@@ -140,7 +438,46 @@
       "status": "a",
       "news": "",
       "starting": true,
-      "captain": false
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "COV",
+          "home": true,
+          "fdr": 2,
+          "xp": 4.86
+        },
+        {
+          "gw": 2,
+          "opponent": "AVL",
+          "home": false,
+          "fdr": 4,
+          "xp": 4.86
+        },
+        {
+          "gw": 3,
+          "opponent": "CHE",
+          "home": true,
+          "fdr": 4,
+          "xp": 4.86
+        },
+        {
+          "gw": 4,
+          "opponent": "SUN",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.86
+        },
+        {
+          "gw": 5,
+          "opponent": "BHA",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.86
+        }
+      ],
+      "career_minutes": 2218,
+      "data_confidence": 1.0
     },
     {
       "id": 154,
@@ -154,7 +491,46 @@
       "status": "a",
       "news": "",
       "starting": true,
-      "captain": false
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "FUL",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.86
+        },
+        {
+          "gw": 2,
+          "opponent": "BHA",
+          "home": true,
+          "fdr": 2,
+          "xp": 4.86
+        },
+        {
+          "gw": 3,
+          "opponent": "ARS",
+          "home": false,
+          "fdr": 5,
+          "xp": 4.86
+        },
+        {
+          "gw": 4,
+          "opponent": "HUL",
+          "home": true,
+          "fdr": 2,
+          "xp": 4.86
+        },
+        {
+          "gw": 5,
+          "opponent": "BRE",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.86
+        }
+      ],
+      "career_minutes": 1954,
+      "data_confidence": 1.0
     },
     {
       "id": 427,
@@ -168,7 +544,99 @@
       "status": "a",
       "news": "",
       "starting": true,
-      "captain": false
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "HUL",
+          "home": false,
+          "fdr": 2,
+          "xp": 4.62
+        },
+        {
+          "gw": 2,
+          "opponent": "IPS",
+          "home": true,
+          "fdr": 2,
+          "xp": 4.62
+        },
+        {
+          "gw": 3,
+          "opponent": "EVE",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.62
+        },
+        {
+          "gw": 4,
+          "opponent": "MCI",
+          "home": true,
+          "fdr": 4,
+          "xp": 4.62
+        },
+        {
+          "gw": 5,
+          "opponent": "FUL",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.62
+        }
+      ],
+      "career_minutes": 2611,
+      "data_confidence": 1.0
+    },
+    {
+      "id": 155,
+      "name": "Enzo",
+      "team": 6,
+      "team_name": "CHE",
+      "pos": "MID",
+      "cost": 7.0,
+      "xp": 18.53,
+      "selected_by": 5.5,
+      "status": "a",
+      "news": "",
+      "starting": true,
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "FUL",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.52
+        },
+        {
+          "gw": 2,
+          "opponent": "BHA",
+          "home": true,
+          "fdr": 2,
+          "xp": 4.52
+        },
+        {
+          "gw": 3,
+          "opponent": "ARS",
+          "home": false,
+          "fdr": 5,
+          "xp": 4.52
+        },
+        {
+          "gw": 4,
+          "opponent": "HUL",
+          "home": true,
+          "fdr": 2,
+          "xp": 4.52
+        },
+        {
+          "gw": 5,
+          "opponent": "BRE",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.52
+        }
+      ],
+      "career_minutes": 3114,
+      "data_confidence": 1.0
     },
     {
       "id": 223,
@@ -182,21 +650,46 @@
       "status": "a",
       "news": "",
       "starting": true,
-      "captain": false
-    },
-    {
-      "id": 106,
-      "name": "Thiago",
-      "team": 4,
-      "team_name": "BRE",
-      "pos": "FWD",
-      "cost": 8.0,
-      "xp": 17.58,
-      "selected_by": 16.3,
-      "status": "a",
-      "news": "",
-      "starting": false,
-      "captain": false
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "EVE",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.34
+        },
+        {
+          "gw": 2,
+          "opponent": "MCI",
+          "home": true,
+          "fdr": 4,
+          "xp": 4.34
+        },
+        {
+          "gw": 3,
+          "opponent": "FUL",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.34
+        },
+        {
+          "gw": 4,
+          "opponent": "IPS",
+          "home": true,
+          "fdr": 2,
+          "xp": 4.34
+        },
+        {
+          "gw": 5,
+          "opponent": "LEE",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.34
+        }
+      ],
+      "career_minutes": 2210,
+      "data_confidence": 1.0
     },
     {
       "id": 248,
@@ -210,37 +703,154 @@
       "status": "a",
       "news": "",
       "starting": false,
-      "captain": false
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "CRY",
+          "home": true,
+          "fdr": 3,
+          "xp": 3.97
+        },
+        {
+          "gw": 2,
+          "opponent": "BOU",
+          "home": false,
+          "fdr": 3,
+          "xp": 3.97
+        },
+        {
+          "gw": 3,
+          "opponent": "MUN",
+          "home": true,
+          "fdr": 4,
+          "xp": 3.97
+        },
+        {
+          "gw": 4,
+          "opponent": "TOT",
+          "home": false,
+          "fdr": 3,
+          "xp": 3.97
+        },
+        {
+          "gw": 5,
+          "opponent": "IPS",
+          "home": true,
+          "fdr": 2,
+          "xp": 3.97
+        }
+      ],
+      "career_minutes": 1551,
+      "data_confidence": 1.0
+    },
+    {
+      "id": 347,
+      "name": "Nmecha",
+      "team": 13,
+      "team_name": "LEE",
+      "pos": "FWD",
+      "cost": 5.5,
+      "xp": 15.53,
+      "selected_by": 0.6,
+      "status": "a",
+      "news": "",
+      "starting": false,
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "NFO",
+          "home": false,
+          "fdr": 3,
+          "xp": 3.79
+        },
+        {
+          "gw": 2,
+          "opponent": "BRE",
+          "home": true,
+          "fdr": 3,
+          "xp": 3.79
+        },
+        {
+          "gw": 3,
+          "opponent": "BHA",
+          "home": false,
+          "fdr": 3,
+          "xp": 3.79
+        },
+        {
+          "gw": 4,
+          "opponent": "NEW",
+          "home": true,
+          "fdr": 2,
+          "xp": 3.79
+        },
+        {
+          "gw": 5,
+          "opponent": "CRY",
+          "home": true,
+          "fdr": 3,
+          "xp": 3.79
+        }
+      ],
+      "career_minutes": 1065,
+      "data_confidence": 1.0
     }
   ],
   "starters": [
     {
-      "id": 199,
-      "name": "Benitez",
-      "team": 8,
-      "team_name": "CRY",
+      "id": 442,
+      "name": "Pope",
+      "team": 17,
+      "team_name": "NEW",
       "pos": "GKP",
-      "cost": 4.5,
-      "xp": 15.25,
-      "selected_by": 0.1,
+      "cost": 5.0,
+      "xp": 15.26,
+      "selected_by": 1.2,
       "status": "a",
       "news": "",
       "starting": true,
-      "captain": false
-    },
-    {
-      "id": 508,
-      "name": "Davies",
-      "team": 19,
-      "team_name": "TOT",
-      "pos": "DEF",
-      "cost": 4.0,
-      "xp": 24.02,
-      "selected_by": 0.9,
-      "status": "a",
-      "news": "",
-      "starting": true,
-      "captain": true
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "LIV",
+          "home": true,
+          "fdr": 4,
+          "xp": 3.73
+        },
+        {
+          "gw": 2,
+          "opponent": "TOT",
+          "home": false,
+          "fdr": 3,
+          "xp": 3.73
+        },
+        {
+          "gw": 3,
+          "opponent": "BOU",
+          "home": true,
+          "fdr": 3,
+          "xp": 3.73
+        },
+        {
+          "gw": 4,
+          "opponent": "LEE",
+          "home": false,
+          "fdr": 3,
+          "xp": 3.73
+        },
+        {
+          "gw": 5,
+          "opponent": "HUL",
+          "home": true,
+          "fdr": 2,
+          "xp": 3.73
+        }
+      ],
+      "career_minutes": 2416,
+      "data_confidence": 1.0
     },
     {
       "id": 130,
@@ -254,7 +864,46 @@
       "status": "a",
       "news": "",
       "starting": true,
-      "captain": false
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "AVL",
+          "home": true,
+          "fdr": 3,
+          "xp": 4.88
+        },
+        {
+          "gw": 2,
+          "opponent": "CHE",
+          "home": false,
+          "fdr": 4,
+          "xp": 4.88
+        },
+        {
+          "gw": 3,
+          "opponent": "LEE",
+          "home": true,
+          "fdr": 2,
+          "xp": 4.88
+        },
+        {
+          "gw": 4,
+          "opponent": "COV",
+          "home": false,
+          "fdr": 2,
+          "xp": 4.88
+        },
+        {
+          "gw": 5,
+          "opponent": "ARS",
+          "home": true,
+          "fdr": 4,
+          "xp": 4.88
+        }
+      ],
+      "career_minutes": 1901,
+      "data_confidence": 1.0
     },
     {
       "id": 8,
@@ -268,7 +917,46 @@
       "status": "a",
       "news": "",
       "starting": true,
-      "captain": false
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "COV",
+          "home": true,
+          "fdr": 2,
+          "xp": 4.81
+        },
+        {
+          "gw": 2,
+          "opponent": "AVL",
+          "home": false,
+          "fdr": 4,
+          "xp": 4.81
+        },
+        {
+          "gw": 3,
+          "opponent": "CHE",
+          "home": true,
+          "fdr": 4,
+          "xp": 4.81
+        },
+        {
+          "gw": 4,
+          "opponent": "SUN",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.81
+        },
+        {
+          "gw": 5,
+          "opponent": "BHA",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.81
+        }
+      ],
+      "career_minutes": 1697,
+      "data_confidence": 1.0
     },
     {
       "id": 4,
@@ -282,21 +970,99 @@
       "status": "a",
       "news": "",
       "starting": true,
-      "captain": false
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "COV",
+          "home": true,
+          "fdr": 2,
+          "xp": 4.64
+        },
+        {
+          "gw": 2,
+          "opponent": "AVL",
+          "home": false,
+          "fdr": 4,
+          "xp": 4.64
+        },
+        {
+          "gw": 3,
+          "opponent": "CHE",
+          "home": true,
+          "fdr": 4,
+          "xp": 4.64
+        },
+        {
+          "gw": 4,
+          "opponent": "SUN",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.64
+        },
+        {
+          "gw": 5,
+          "opponent": "BHA",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.64
+        }
+      ],
+      "career_minutes": 2750,
+      "data_confidence": 1.0
     },
     {
-      "id": 100,
-      "name": "Carvalho",
-      "team": 4,
-      "team_name": "BRE",
-      "pos": "MID",
-      "cost": 5.0,
-      "xp": 21.34,
-      "selected_by": 0.0,
+      "id": 269,
+      "name": "Sessegnon",
+      "team": 10,
+      "team_name": "FUL",
+      "pos": "DEF",
+      "cost": 4.5,
+      "xp": 17.25,
+      "selected_by": 0.4,
       "status": "a",
       "news": "",
       "starting": true,
-      "captain": false
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "CHE",
+          "home": true,
+          "fdr": 4,
+          "xp": 4.21
+        },
+        {
+          "gw": 2,
+          "opponent": "SUN",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.21
+        },
+        {
+          "gw": 3,
+          "opponent": "CRY",
+          "home": true,
+          "fdr": 3,
+          "xp": 4.21
+        },
+        {
+          "gw": 4,
+          "opponent": "LIV",
+          "home": false,
+          "fdr": 4,
+          "xp": 4.21
+        },
+        {
+          "gw": 5,
+          "opponent": "MUN",
+          "home": true,
+          "fdr": 4,
+          "xp": 4.21
+        }
+      ],
+      "career_minutes": 1816,
+      "data_confidence": 1.0
     },
     {
       "id": 426,
@@ -310,7 +1076,46 @@
       "status": "a",
       "news": "",
       "starting": true,
-      "captain": false
+      "captain": true,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "HUL",
+          "home": false,
+          "fdr": 2,
+          "xp": 5.05
+        },
+        {
+          "gw": 2,
+          "opponent": "IPS",
+          "home": true,
+          "fdr": 2,
+          "xp": 5.05
+        },
+        {
+          "gw": 3,
+          "opponent": "EVE",
+          "home": false,
+          "fdr": 3,
+          "xp": 5.05
+        },
+        {
+          "gw": 4,
+          "opponent": "MCI",
+          "home": true,
+          "fdr": 4,
+          "xp": 5.05
+        },
+        {
+          "gw": 5,
+          "opponent": "FUL",
+          "home": false,
+          "fdr": 3,
+          "xp": 5.05
+        }
+      ],
+      "career_minutes": 3065,
+      "data_confidence": 1.0
     },
     {
       "id": 12,
@@ -324,7 +1129,46 @@
       "status": "a",
       "news": "",
       "starting": true,
-      "captain": false
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "COV",
+          "home": true,
+          "fdr": 2,
+          "xp": 4.86
+        },
+        {
+          "gw": 2,
+          "opponent": "AVL",
+          "home": false,
+          "fdr": 4,
+          "xp": 4.86
+        },
+        {
+          "gw": 3,
+          "opponent": "CHE",
+          "home": true,
+          "fdr": 4,
+          "xp": 4.86
+        },
+        {
+          "gw": 4,
+          "opponent": "SUN",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.86
+        },
+        {
+          "gw": 5,
+          "opponent": "BHA",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.86
+        }
+      ],
+      "career_minutes": 2218,
+      "data_confidence": 1.0
     },
     {
       "id": 154,
@@ -338,7 +1182,46 @@
       "status": "a",
       "news": "",
       "starting": true,
-      "captain": false
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "FUL",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.86
+        },
+        {
+          "gw": 2,
+          "opponent": "BHA",
+          "home": true,
+          "fdr": 2,
+          "xp": 4.86
+        },
+        {
+          "gw": 3,
+          "opponent": "ARS",
+          "home": false,
+          "fdr": 5,
+          "xp": 4.86
+        },
+        {
+          "gw": 4,
+          "opponent": "HUL",
+          "home": true,
+          "fdr": 2,
+          "xp": 4.86
+        },
+        {
+          "gw": 5,
+          "opponent": "BRE",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.86
+        }
+      ],
+      "career_minutes": 1954,
+      "data_confidence": 1.0
     },
     {
       "id": 427,
@@ -352,7 +1235,99 @@
       "status": "a",
       "news": "",
       "starting": true,
-      "captain": false
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "HUL",
+          "home": false,
+          "fdr": 2,
+          "xp": 4.62
+        },
+        {
+          "gw": 2,
+          "opponent": "IPS",
+          "home": true,
+          "fdr": 2,
+          "xp": 4.62
+        },
+        {
+          "gw": 3,
+          "opponent": "EVE",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.62
+        },
+        {
+          "gw": 4,
+          "opponent": "MCI",
+          "home": true,
+          "fdr": 4,
+          "xp": 4.62
+        },
+        {
+          "gw": 5,
+          "opponent": "FUL",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.62
+        }
+      ],
+      "career_minutes": 2611,
+      "data_confidence": 1.0
+    },
+    {
+      "id": 155,
+      "name": "Enzo",
+      "team": 6,
+      "team_name": "CHE",
+      "pos": "MID",
+      "cost": 7.0,
+      "xp": 18.53,
+      "selected_by": 5.5,
+      "status": "a",
+      "news": "",
+      "starting": true,
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "FUL",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.52
+        },
+        {
+          "gw": 2,
+          "opponent": "BHA",
+          "home": true,
+          "fdr": 2,
+          "xp": 4.52
+        },
+        {
+          "gw": 3,
+          "opponent": "ARS",
+          "home": false,
+          "fdr": 5,
+          "xp": 4.52
+        },
+        {
+          "gw": 4,
+          "opponent": "HUL",
+          "home": true,
+          "fdr": 2,
+          "xp": 4.52
+        },
+        {
+          "gw": 5,
+          "opponent": "BRE",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.52
+        }
+      ],
+      "career_minutes": 3114,
+      "data_confidence": 1.0
     },
     {
       "id": 223,
@@ -366,51 +1341,154 @@
       "status": "a",
       "news": "",
       "starting": true,
-      "captain": false
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "EVE",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.34
+        },
+        {
+          "gw": 2,
+          "opponent": "MCI",
+          "home": true,
+          "fdr": 4,
+          "xp": 4.34
+        },
+        {
+          "gw": 3,
+          "opponent": "FUL",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.34
+        },
+        {
+          "gw": 4,
+          "opponent": "IPS",
+          "home": true,
+          "fdr": 2,
+          "xp": 4.34
+        },
+        {
+          "gw": 5,
+          "opponent": "LEE",
+          "home": false,
+          "fdr": 3,
+          "xp": 4.34
+        }
+      ],
+      "career_minutes": 2210,
+      "data_confidence": 1.0
     }
   ],
   "bench": [
     {
-      "id": 496,
-      "name": "Kinsky",
+      "id": 497,
+      "name": "Dubravka",
       "team": 19,
       "team_name": "TOT",
       "pos": "GKP",
-      "cost": 4.5,
-      "xp": 14.66,
-      "selected_by": 19.8,
+      "cost": 4.0,
+      "xp": 10.88,
+      "selected_by": 22.3,
       "status": "a",
       "news": "",
       "starting": false,
-      "captain": false
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "BRE",
+          "home": false,
+          "fdr": 3,
+          "xp": 2.66
+        },
+        {
+          "gw": 2,
+          "opponent": "NEW",
+          "home": true,
+          "fdr": 2,
+          "xp": 2.66
+        },
+        {
+          "gw": 3,
+          "opponent": "NFO",
+          "home": false,
+          "fdr": 3,
+          "xp": 2.66
+        },
+        {
+          "gw": 4,
+          "opponent": "EVE",
+          "home": true,
+          "fdr": 3,
+          "xp": 2.66
+        },
+        {
+          "gw": 5,
+          "opponent": "AVL",
+          "home": true,
+          "fdr": 3,
+          "xp": 2.66
+        }
+      ],
+      "career_minutes": 3150,
+      "data_confidence": 1.0
     },
     {
-      "id": 269,
-      "name": "Sessegnon",
+      "id": 255,
+      "name": "J.Cuenca",
       "team": 10,
       "team_name": "FUL",
       "pos": "DEF",
       "cost": 4.5,
-      "xp": 17.25,
-      "selected_by": 0.4,
+      "xp": 15.03,
+      "selected_by": 0.0,
       "status": "a",
       "news": "",
       "starting": false,
-      "captain": false
-    },
-    {
-      "id": 106,
-      "name": "Thiago",
-      "team": 4,
-      "team_name": "BRE",
-      "pos": "FWD",
-      "cost": 8.0,
-      "xp": 17.58,
-      "selected_by": 16.3,
-      "status": "a",
-      "news": "",
-      "starting": false,
-      "captain": false
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "CHE",
+          "home": true,
+          "fdr": 4,
+          "xp": 3.67
+        },
+        {
+          "gw": 2,
+          "opponent": "SUN",
+          "home": false,
+          "fdr": 3,
+          "xp": 3.67
+        },
+        {
+          "gw": 3,
+          "opponent": "CRY",
+          "home": true,
+          "fdr": 3,
+          "xp": 3.67
+        },
+        {
+          "gw": 4,
+          "opponent": "LIV",
+          "home": false,
+          "fdr": 4,
+          "xp": 3.67
+        },
+        {
+          "gw": 5,
+          "opponent": "MUN",
+          "home": true,
+          "fdr": 4,
+          "xp": 3.67
+        }
+      ],
+      "career_minutes": 935,
+      "data_confidence": 1.0
     },
     {
       "id": 248,
@@ -424,69 +1502,137 @@
       "status": "a",
       "news": "",
       "starting": false,
-      "captain": false
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "CRY",
+          "home": true,
+          "fdr": 3,
+          "xp": 3.97
+        },
+        {
+          "gw": 2,
+          "opponent": "BOU",
+          "home": false,
+          "fdr": 3,
+          "xp": 3.97
+        },
+        {
+          "gw": 3,
+          "opponent": "MUN",
+          "home": true,
+          "fdr": 4,
+          "xp": 3.97
+        },
+        {
+          "gw": 4,
+          "opponent": "TOT",
+          "home": false,
+          "fdr": 3,
+          "xp": 3.97
+        },
+        {
+          "gw": 5,
+          "opponent": "IPS",
+          "home": true,
+          "fdr": 2,
+          "xp": 3.97
+        }
+      ],
+      "career_minutes": 1551,
+      "data_confidence": 1.0
+    },
+    {
+      "id": 347,
+      "name": "Nmecha",
+      "team": 13,
+      "team_name": "LEE",
+      "pos": "FWD",
+      "cost": 5.5,
+      "xp": 15.53,
+      "selected_by": 0.6,
+      "status": "a",
+      "news": "",
+      "starting": false,
+      "captain": false,
+      "fixtures": [
+        {
+          "gw": 1,
+          "opponent": "NFO",
+          "home": false,
+          "fdr": 3,
+          "xp": 3.79
+        },
+        {
+          "gw": 2,
+          "opponent": "BRE",
+          "home": true,
+          "fdr": 3,
+          "xp": 3.79
+        },
+        {
+          "gw": 3,
+          "opponent": "BHA",
+          "home": false,
+          "fdr": 3,
+          "xp": 3.79
+        },
+        {
+          "gw": 4,
+          "opponent": "NEW",
+          "home": true,
+          "fdr": 2,
+          "xp": 3.79
+        },
+        {
+          "gw": 5,
+          "opponent": "CRY",
+          "home": true,
+          "fdr": 3,
+          "xp": 3.79
+        }
+      ],
+      "career_minutes": 1065,
+      "data_confidence": 1.0
     }
   ],
   "captain": {
-    "id": 508,
-    "name": "Davies",
-    "team": 19,
-    "team_name": "TOT",
-    "pos": "DEF",
-    "cost": 4.0,
-    "xp": 24.02,
-    "selected_by": 0.9,
+    "id": 426,
+    "name": "B.Fernandes",
+    "team": 16,
+    "team_name": "MUN",
+    "pos": "MID",
+    "cost": 12.0,
+    "xp": 20.67,
+    "selected_by": 47.9,
     "status": "a",
     "news": "",
     "starting": true,
     "captain": true,
-    "captain_score": 5.9,
-    "gw_xp": 5.87
+    "captain_score": 3.98,
+    "gw_xp": 5.05
   },
   "vice_captain": {
-    "id": 100,
-    "name": "Carvalho",
-    "team": 4,
-    "team_name": "BRE",
+    "id": 12,
+    "name": "Saka",
+    "team": 1,
+    "team_name": "ARS",
     "pos": "MID",
-    "cost": 5.0,
-    "xp": 21.34,
-    "selected_by": 0.0,
+    "cost": 9.5,
+    "xp": 19.9,
+    "selected_by": 10.6,
     "status": "a",
     "news": "",
     "starting": true,
     "captain": false,
-    "captain_score": 5.55,
-    "gw_xp": 5.21
+    "captain_score": 3.83,
+    "gw_xp": 4.86
   },
-  "predicted_points": 240.5,
+  "predicted_points": 227.6,
   "total_cost": 100.0,
   "budget_left": 0.0,
   "differentials": [
-    {
-      "id": 508,
-      "name": "Davies",
-      "team": 19,
-      "team_name": "TOT",
-      "pos": "DEF",
-      "cost": 4.0,
-      "xp": 24.02,
-      "selected_by": 0.9,
-      "status": "a",
-      "news": ""
-    },
-    {
-      "id": 100,
-      "name": "Carvalho",
-      "team": 4,
-      "team_name": "BRE",
-      "pos": "MID",
-      "cost": 5.0,
-      "xp": 21.34,
-      "selected_by": 0.0,
-      "status": "a",
-      "news": ""
-    },
     {
       "id": 130,
       "name": "Wieffer",
@@ -536,18 +1682,6 @@
       "news": ""
     },
     {
-      "id": 157,
-      "name": "Est\u00eav\u00e3o",
-      "team": 6,
-      "team_name": "CHE",
-      "pos": "MID",
-      "cost": 6.5,
-      "xp": 18.22,
-      "selected_by": 1.6,
-      "status": "a",
-      "news": ""
-    },
-    {
       "id": 94,
       "name": "Schade",
       "team": 4,
@@ -558,58 +1692,46 @@
       "selected_by": 2.5,
       "status": "a",
       "news": ""
-    }
-  ],
-  "flags": [
-    "Benitez: DOUBLE gameweek incoming \u2014 strong captain/hold candidate",
-    "Kinsky: DOUBLE gameweek incoming \u2014 strong captain/hold candidate",
-    "Davies: DOUBLE gameweek incoming \u2014 strong captain/hold candidate",
-    "Wieffer: DOUBLE gameweek incoming \u2014 strong captain/hold candidate",
-    "Calafiori: DOUBLE gameweek incoming \u2014 strong captain/hold candidate",
-    "Gabriel: DOUBLE gameweek incoming \u2014 strong captain/hold candidate",
-    "Sessegnon: DOUBLE gameweek incoming \u2014 strong captain/hold candidate",
-    "Carvalho: DOUBLE gameweek incoming \u2014 strong captain/hold candidate",
-    "B.Fernandes: DOUBLE gameweek incoming \u2014 strong captain/hold candidate",
-    "Saka: DOUBLE gameweek incoming \u2014 strong captain/hold candidate",
-    "Palmer: DOUBLE gameweek incoming \u2014 strong captain/hold candidate",
-    "Mbeumo: DOUBLE gameweek incoming \u2014 strong captain/hold candidate",
-    "Mateta: DOUBLE gameweek incoming \u2014 strong captain/hold candidate",
-    "Thiago: DOUBLE gameweek incoming \u2014 strong captain/hold candidate",
-    "Beto: DOUBLE gameweek incoming \u2014 strong captain/hold candidate"
-  ],
-  "captain_alternatives": [
-    {
-      "id": 508,
-      "name": "Davies",
-      "team": 19,
-      "team_name": "TOT",
-      "pos": "DEF",
-      "cost": 4.0,
-      "xp": 24.02,
-      "selected_by": 0.9,
-      "status": "a",
-      "news": "",
-      "starting": true,
-      "captain": true,
-      "captain_score": 5.9,
-      "gw_xp": 5.87
     },
     {
-      "id": 100,
-      "name": "Carvalho",
-      "team": 4,
-      "team_name": "BRE",
+      "id": 68,
+      "name": "Tavernier",
+      "team": 3,
+      "team_name": "BOU",
+      "pos": "MID",
+      "cost": 6.0,
+      "xp": 17.79,
+      "selected_by": 1.8,
+      "status": "a",
+      "news": ""
+    },
+    {
+      "id": 223,
+      "name": "Mateta",
+      "team": 8,
+      "team_name": "CRY",
+      "pos": "FWD",
+      "cost": 6.5,
+      "xp": 17.77,
+      "selected_by": 6.3,
+      "status": "a",
+      "news": ""
+    },
+    {
+      "id": 127,
+      "name": "Gomez",
+      "team": 5,
+      "team_name": "BHA",
       "pos": "MID",
       "cost": 5.0,
-      "xp": 21.34,
-      "selected_by": 0.0,
+      "xp": 17.48,
+      "selected_by": 2.8,
       "status": "a",
-      "news": "",
-      "starting": true,
-      "captain": false,
-      "captain_score": 5.55,
-      "gw_xp": 5.21
-    },
+      "news": ""
+    }
+  ],
+  "flags": [],
+  "captain_alternatives": [
     {
       "id": 426,
       "name": "B.Fernandes",
@@ -622,8 +1744,8 @@
       "status": "a",
       "news": "",
       "starting": true,
-      "captain": false,
-      "captain_score": 5.38,
+      "captain": true,
+      "captain_score": 3.98,
       "gw_xp": 5.05
     },
     {
@@ -639,7 +1761,7 @@
       "news": "",
       "starting": true,
       "captain": false,
-      "captain_score": 5.18,
+      "captain_score": 3.83,
       "gw_xp": 4.86
     },
     {
@@ -655,8 +1777,40 @@
       "news": "",
       "starting": true,
       "captain": false,
-      "captain_score": 5.18,
+      "captain_score": 3.83,
       "gw_xp": 4.86
+    },
+    {
+      "id": 427,
+      "name": "Mbeumo",
+      "team": 16,
+      "team_name": "MUN",
+      "pos": "MID",
+      "cost": 8.0,
+      "xp": 18.92,
+      "selected_by": 27.7,
+      "status": "a",
+      "news": "",
+      "starting": true,
+      "captain": false,
+      "captain_score": 3.65,
+      "gw_xp": 4.62
+    },
+    {
+      "id": 130,
+      "name": "Wieffer",
+      "team": 5,
+      "team_name": "BHA",
+      "pos": "DEF",
+      "cost": 5.0,
+      "xp": 19.99,
+      "selected_by": 0.3,
+      "status": "a",
+      "news": "",
+      "starting": true,
+      "captain": false,
+      "captain_score": 3.63,
+      "gw_xp": 4.88
     }
   ],
   "chip_recommendation": {

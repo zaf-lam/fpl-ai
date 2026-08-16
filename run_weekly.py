@@ -35,6 +35,7 @@ def main():
                           "keeper the model doesn't realize isn't first-choice). Find "
                           "IDs from the dashboard or FPL's own player pages.")
     ap.add_argument("--no-refresh", action="store_true", help="Use cached data instead of re-fetching")
+    ap.add_argument("--email", action="store_true", help="Send the report by email")
     args = ap.parse_args()
 
     if not args.no_refresh:
