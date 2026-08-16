@@ -1,0 +1,47 @@
+name: FPL AI Weekly Run
+
+on:
+  schedule:
+    # Runs Thursday 09:00 UTC — adjust to land a day or two before your gameweek deadline.
+    # FPL deadlines are usually Fri/Sat; check yours at fantasy.premierleague.com
+    - cron: '0 9 * * 4'
+  workflow_dispatch: {}   # lets you trigger it manually from the Actions tab any time
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run weekly report
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: |
+          # --entry-id: set FPL_ENTRY_ID as a repo variable once you have a squad (see README)
+          if [ -n "${{ vars.FPL_ENTRY_ID }}" ]; then
+            python run_weekly.py --entry-id ${{ vars.FPL_ENTRY_ID }} --bank ${{ vars.FPL_BANK || 0.0 }} --free-transfers ${{ vars.FPL_FREE_TRANSFERS || 1 }} --email
+          else
+            python run_weekly.py --email
+          fi
+
+      - name: Commit updated dashboard data
+        run: |
+          git config user.name "fpl-ai-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add dashboard/data.json data/*.json
+          git commit -m "Weekly FPL AI update" || echo "No changes to commit"
+          git push

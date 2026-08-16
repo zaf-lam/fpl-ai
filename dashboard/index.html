@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FPL AI — Weekly Squad</title>
+<style>
+  :root{
+    --pitch-dark:#0d1f16;
+    --pitch:#163a26;
+    --pitch-line: rgba(255,255,255,0.14);
+    --chalk:#eef3ec;
+    --chalk-dim:#9fb3a6;
+    --accent:#ff8a3d;
+    --accent-dim:#c96b2e;
+    --panel:#0f1713;
+    --panel-2:#132119;
+    --good:#6fd08c;
+    --bad:#ff6b6b;
+    --mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+    --display: 'Oswald', 'Arial Narrow', sans-serif;
+    --body: 'Inter', -apple-system, sans-serif;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--pitch-dark); color:var(--chalk);
+    font-family:var(--body); min-height:100vh;
+  }
+  header{
+    padding:28px 32px 18px; border-bottom:1px solid var(--pitch-line);
+    display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+  header h1{
+    font-family:var(--display); font-weight:700; letter-spacing:0.5px;
+    font-size:clamp(22px,3vw,32px); margin:0; text-transform:uppercase;
+  }
+  header h1 span{color:var(--accent);}
+  #meta{font-family:var(--mono); color:var(--chalk-dim); font-size:13px;}
+  .wrap{display:grid; grid-template-columns: 1.15fr 0.85fr; gap:0; min-height:calc(100vh - 80px);}
+  @media (max-width: 900px){ .wrap{grid-template-columns:1fr;} }
+
+  /* PITCH */
+  .pitch-col{padding:24px; position:relative;}
+  .pitch{
+    position:relative; border-radius:10px; overflow:hidden;
+    background:
+      repeating-linear-gradient(0deg, var(--pitch) 0px, var(--pitch) 46px, #17402a 46px, #17402a 92px);
+    border:1px solid var(--pitch-line);
+    aspect-ratio: 3 / 4; max-width:620px; margin:0 auto;
+  }
+  .pitch::before{ /* center circle + lines */
+    content:''; position:absolute; inset:14px; border:1.5px solid var(--pitch-line); border-radius:6px;
+  }
+  .pitch::after{
+    content:''; position:absolute; left:50%; top:50%; width:120px; height:120px;
+    border:1.5px solid var(--pitch-line); border-radius:50%; transform:translate(-50%,-50%);
+  }
+  .row{position:relative; display:flex; justify-content:space-evenly; align-items:center;
+       padding:10px 8px; z-index:2;}
+  .player-chip{
+    display:flex; flex-direction:column; align-items:center; gap:3px; cursor:default;
+    transition:transform .15s ease;
+  }
+  .player-chip:hover{transform:translateY(-3px);}
+  .shirt{
+    width:38px; height:38px; border-radius:8px; background:var(--panel-2);
+    border:1.5px solid var(--pitch-line); display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:11px; font-weight:600; color:var(--chalk);
+    position:relative;
+  }
+  .player-chip.captain .shirt{ border-color:var(--accent); box-shadow:0 0 0 2px rgba(255,138,61,.25); }
+  .cbadge{
+    position:absolute; top:-8px; right:-8px; background:var(--accent); color:#1a1006;
+    font-size:9px; font-weight:700; width:16px; height:16px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-family:var(--mono);
+  }
+  .pname{font-size:10.5px; color:var(--chalk); max-width:64px; text-align:center; line-height:1.2;}
+  .pxp{font-size:9.5px; color:var(--accent); font-family:var(--mono);}
+
+  .bench-strip{
+    max-width:620px; margin:16px auto 0; background:var(--panel); border:1px solid var(--pitch-line);
+    border-radius:8px; padding:12px 16px;
+  }
+  .bench-strip h3{margin:0 0 8px; font-family:var(--display); font-size:12px; letter-spacing:1.5px;
+    text-transform:uppercase; color:var(--chalk-dim);}
+  .bench-row{display:flex; gap:18px; flex-wrap:wrap;}
+
+  /* SIDEBAR */
+  .side{background:var(--panel); border-left:1px solid var(--pitch-line); padding:24px;
+        display:flex; flex-direction:column; gap:20px;}
+  .card{background:var(--panel-2); border:1px solid var(--pitch-line); border-radius:10px; padding:16px 18px;}
+  .card h2{font-family:var(--display); font-size:13px; text-transform:uppercase; letter-spacing:1.5px;
+           margin:0 0 12px; color:var(--chalk-dim);}
+  .stat-row{display:flex; justify-content:space-between; padding:6px 0; font-size:14px;
+            border-bottom:1px dashed rgba(255,255,255,0.06);}
+  .stat-row:last-child{border-bottom:none;}
+  .stat-row b{font-family:var(--mono); color:var(--chalk);}
+  .rec{border-left:3px solid var(--accent); padding:10px 12px; background:rgba(255,138,61,0.07);
+       border-radius:0 6px 6px 0; font-size:14px; line-height:1.5;}
+  .rec.hold{border-left-color:var(--chalk-dim); background:rgba(255,255,255,0.03);}
+  .flag{font-size:13px; color:var(--chalk-dim); padding:6px 0; border-bottom:1px dashed rgba(255,255,255,0.06);}
+  .diff-item{display:flex; justify-content:space-between; font-size:13px; padding:6px 0;
+             border-bottom:1px dashed rgba(255,255,255,0.06);}
+  .diff-item .own{color:var(--chalk-dim); font-family:var(--mono); font-size:12px;}
+  .empty{color:var(--chalk-dim); font-size:13px; padding:20px; text-align:center;}
+  .pill{display:inline-block; padding:2px 8px; border-radius:20px; font-size:11px;
+        font-family:var(--mono); background:rgba(111,208,140,0.15); color:var(--good);}
+  footer{padding:18px 32px; color:var(--chalk-dim); font-size:12px; font-family:var(--mono);
+         border-top:1px solid var(--pitch-line);}
+</style>
+</head>
+<body>
+<header>
+  <h1>FPL <span>AI</span> — Weekly Squad</h1>
+  <div id="meta">loading…</div>
+</header>
+
+<div class="wrap">
+  <div class="pitch-col">
+    <div class="pitch" id="pitch"></div>
+    <div class="bench-strip">
+      <h3>Bench</h3>
+      <div class="bench-row" id="bench"></div>
+    </div>
+  </div>
+
+  <div class="side">
+    <div class="card" id="summary-card">
+      <h2>This Gameweek</h2>
+      <div id="summary"></div>
+    </div>
+    <div class="card" id="rec-card" style="display:none;">
+      <h2>Recommendation</h2>
+      <div id="rec"></div>
+    </div>
+    <div class="card" id="flags-card" style="display:none;">
+      <h2>Fixture Flags</h2>
+      <div id="flags"></div>
+    </div>
+    <div class="card">
+      <h2>Differentials to Watch</h2>
+      <div id="diffs"></div>
+    </div>
+  </div>
+</div>
+
+<footer>Data: official FPL API · Model: xG/xA + fixture-adjusted expected points · Regenerated weekly</footer>
+
+<script>
+const POS_ORDER = {GKP:0, DEF:1, MID:2, FWD:3};
+
+async function load() {
+  let data;
+  try {
+    const res = await fetch('data.json', {cache:'no-store'});
+    data = await res.json();
+  } catch(e) {
+    document.getElementById('pitch').innerHTML = '<div class="empty">No data.json found yet.<br>Run <code>python run_weekly.py</code> to generate your squad.</div>';
+    document.getElementById('meta').textContent = 'no data';
+    return;
+  }
+  render(data);
+}
+
+function chip(p) {
+  const cap = p.captain ? ' captain' : '';
+  return `<div class="player-chip${cap}">
+      <div class="shirt">${p.pos}${p.captain ? '<div class="cbadge">C</div>' : ''}</div>
+      <div class="pname">${p.name}</div>
+      <div class="pxp">${p.xp.toFixed(1)} xP</div>
+    </div>`;
+}
+
+function render(d) {
+  document.getElementById('meta').textContent = `Gameweek ${d.gameweek} · £${d.total_cost}m spent · £${d.budget_left}m in bank`;
+
+  const starters = d.starters.slice().sort((a,b)=>POS_ORDER[a.pos]-POS_ORDER[b.pos]);
+  const rows = {GKP:[], DEF:[], MID:[], FWD:[]};
+  starters.forEach(p => rows[p.pos].push(p));
+
+  const pitch = document.getElementById('pitch');
+  pitch.innerHTML = ['FWD','MID','DEF','GKP'].map(pos =>
+    `<div class="row">${rows[pos].map(chip).join('')}</div>`
+  ).join('');
+
+  document.getElementById('bench').innerHTML = d.bench
+    .slice().sort((a,b)=>-a.xp+b.xp).map(chip).join('');
+
+  document.getElementById('summary').innerHTML = `
+    <div class="stat-row"><span>Predicted points</span><b>${d.predicted_points.toFixed(1)}</b></div>
+    <div class="stat-row"><span>Captain</span><b>${d.captain ? d.captain.name : '—'}</b></div>
+    <div class="stat-row"><span>Vice-captain</span><b>${d.vice_captain ? d.vice_captain.name : '—'}</b></div>
+    <div class="stat-row"><span>Squad value</span><b>£${d.total_cost}m</b></div>
+    <div class="stat-row"><span>In the bank</span><b>£${d.budget_left}m</b></div>
+  `;
+
+  if (d.mode === 'transfer_advice') {
+    document.getElementById('rec-card').style.display = 'block';
+    const worth = d.worth_it;
+    document.getElementById('rec').innerHTML = `
+      <div class="rec ${worth ? '' : 'hold'}">
+        ${worth
+          ? `Make <b>${d.transfers_made}</b> transfer(s) this week (hit: -${d.hit_cost} pts).<br>Net expected gain: <span class="pill">+${d.net_gain.toFixed(1)} pts</span> over the horizon.`
+          : `Hold your squad — no transfer clears the value bar this week.`}
+      </div>`;
+  }
+
+  if (d.flags && d.flags.length) {
+    document.getElementById('flags-card').style.display = 'block';
+    document.getElementById('flags').innerHTML = d.flags.map(f => `<div class="flag">${f}</div>`).join('');
+  }
+
+  const diffs = d.differentials || [];
+  document.getElementById('diffs').innerHTML = diffs.length
+    ? diffs.map(p => `<div class="diff-item"><span>${p.name} <span class="own">(${p.pos}, ${p.team_name})</span></span><span class="own">${p.selected_by.toFixed(1)}% · ${p.xp.toFixed(1)} xP</span></div>`).join('')
+    : '<div class="empty">None found this week.</div>';
+}
+
+load();
+</script>
+</body>
+</html>
