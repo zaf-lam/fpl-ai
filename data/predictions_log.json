@@ -75,5 +75,82 @@
     ],
     "actual_points": null,
     "actual_by_player": null
+  },
+  {
+    "gameweek": 2,
+    "logged_at": "2026-08-24T13:03:56.816293+00:00",
+    "predicted_points": 243.8,
+    "captain_id": 115,
+    "captain_name": "De Cuyper",
+    "starters": [
+      {
+        "id": 82,
+        "name": "Kelleher",
+        "pos": "GKP",
+        "predicted_xp": 9.13
+      },
+      {
+        "id": 115,
+        "name": "De Cuyper",
+        "pos": "DEF",
+        "predicted_xp": 34.1
+      },
+      {
+        "id": 388,
+        "name": "Gu\u00e9hi",
+        "pos": "DEF",
+        "predicted_xp": 22.06
+      },
+      {
+        "id": 88,
+        "name": "Kayode",
+        "pos": "DEF",
+        "predicted_xp": 15.51
+      },
+      {
+        "id": 123,
+        "name": "Hinshelwood",
+        "pos": "MID",
+        "predicted_xp": 28.93
+      },
+      {
+        "id": 368,
+        "name": "Szoboszlai",
+        "pos": "MID",
+        "predicted_xp": 17.09
+      },
+      {
+        "id": 12,
+        "name": "Saka",
+        "pos": "MID",
+        "predicted_xp": 16.79
+      },
+      {
+        "id": 86,
+        "name": "Lewis-Potter",
+        "pos": "MID",
+        "predicted_xp": 16.21
+      },
+      {
+        "id": 415,
+        "name": "Dorgu",
+        "pos": "MID",
+        "predicted_xp": 14.84
+      },
+      {
+        "id": 224,
+        "name": "Nketiah",
+        "pos": "FWD",
+        "predicted_xp": 19.59
+      },
+      {
+        "id": 316,
+        "name": "Emersonn",
+        "pos": "FWD",
+        "predicted_xp": 15.4
+      }
+    ],
+    "actual_points": null,
+    "actual_by_player": null
   }
 ]
