@@ -69,9 +69,19 @@ def build_weekly_report(entry_id=None, n_gameweeks=5, free_transfers=1, budget_b
         p["career_minutes"] = info.get("career_minutes", 0)
         p["data_confidence"] = info.get("data_confidence", 1.0)
 
+    # The optimizer works on horizon totals (5 GWs), so its "predicted_gw_points" is a
+    # multi-week figure. For display we also compute what this XI is expected to score
+    # in the NEXT gameweek specifically, which is the number that's actually intuitive.
+    next_gw_points = 0.0
+    for p in starters:
+        gw_xp = xp_table.get(p["id"], {}).get("xp_by_gw", {}).get(next_gw, 0.0)
+        next_gw_points += gw_xp * (2 if p.get("captain") else 1)
+
     report = {
         "gameweek": next_gw,
         "mode": mode,
+        "next_gw_points": round(next_gw_points, 1),
+        "horizon_gameweeks": n_gameweeks,
         "squad": squad,
         "starters": starters,
         "bench": bench,
@@ -89,6 +99,9 @@ def build_weekly_report(entry_id=None, n_gameweeks=5, free_transfers=1, budget_b
         report["transfers_made"] = rec["transfers_made"]
         report["hit_cost"] = rec["hit_cost"]
         report["net_gain"] = rec["net_gain"]
+        report["transfers_in"] = rec.get("transfers_in", [])
+        report["transfers_out"] = rec.get("transfers_out", [])
+        report["baseline_points"] = rec.get("baseline_points")
         report["worth_it"] = rec["net_gain"] > 0.5  # small margin so it's not chasing noise
     return report
 
@@ -97,11 +110,17 @@ def format_email_text(report):
     lines = [f"FPL AI Weekly Report — Gameweek {report['gameweek']}", "=" * 40, ""]
     if report["mode"] == "transfer_advice":
         if report["worth_it"] and report["transfers_made"] > 0:
-            lines.append(f"RECOMMENDATION: Make {report['transfers_made']} transfer(s) "
-                         f"(hit: -{report['hit_cost']} pts). Net expected gain: "
-                         f"+{report['net_gain']:.1f} pts over {5} GWs.")
+            hit_txt = f", taking a -{report['hit_cost']} pt hit" if report["hit_cost"] else " (free)"
+            lines.append(f"RECOMMENDATION: Make {report['transfers_made']} transfer(s)"
+                         f"{hit_txt}.")
+            for out_p, in_p in zip(report.get("transfers_out", []), report.get("transfers_in", [])):
+                lines.append(f"   OUT: {out_p['name']} ({out_p['team_name']}, £{out_p['cost']}m)"
+                             f"  ->  IN: {in_p['name']} ({in_p['team_name']}, £{in_p['cost']}m)")
+            lines.append(f"   Net expected gain vs holding: +{report['net_gain']:.1f} pts "
+                         f"over the next {report.get('horizon_gameweeks', 5)} GWs.")
         else:
-            lines.append("RECOMMENDATION: Hold — no transfer clears the value bar this week.")
+            lines.append("RECOMMENDATION: Hold — no transfer beats keeping your current squad "
+                         "once the points hit is accounted for.")
         lines.append("")
     lines.append(f"Captain: {report['captain']['name']} ({report['captain']['xp']:.1f} xP)")
     if report["vice_captain"]:
@@ -109,7 +128,10 @@ def format_email_text(report):
     chip = report.get("chip_recommendation")
     if chip and chip.get("chip"):
         lines.append(f"Chip suggestion: {chip['chip'].replace('_',' ').title()} — {chip['rationale']}")
-    lines.append(f"Predicted points (starting XI + captain): {report['predicted_points']:.1f}")
+    lines.append(f"Predicted points for GW{report['gameweek']} (XI + captain): "
+                 f"{report.get('next_gw_points', 0):.1f}")
+    lines.append(f"  (over the full {report.get('horizon_gameweeks', 5)}-GW horizon: "
+                 f"{report['predicted_points']:.1f})")
     lines.append("")
     lines.append("Starting XI:")
     for p in sorted(report["starters"], key=lambda x: x["pos"]):

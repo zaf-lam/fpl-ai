@@ -42,9 +42,15 @@ def build_player_pool(boot, xp_table, exclude_unavailable=True):
     return pool
 
 
-def optimize_squad(pool, budget=100.0, locked_ids=None, banned_ids=None):
+def optimize_squad(pool, budget=100.0, locked_ids=None, banned_ids=None,
+                    current_squad_ids=None, max_transfers=None):
     """Full squad optimization: pick 15 players maximizing total starting-XI+bench xP
-    (bench weighted low since they rarely play) under budget/club/position constraints."""
+    (bench weighted low since they rarely play) under budget/club/position constraints.
+
+    If `current_squad_ids` and `max_transfers` are given, the solver is CONSTRAINED to
+    keep at least (15 - max_transfers) of your existing players. This is what makes it
+    give real transfer advice for YOUR team rather than proposing a from-scratch rebuild
+    every week."""
     locked_ids = set(locked_ids or [])
     banned_ids = set(banned_ids or [])
     prob = pulp.LpProblem("fpl_squad", pulp.LpMaximize)
@@ -95,6 +101,13 @@ def optimize_squad(pool, budget=100.0, locked_ids=None, banned_ids=None):
         if pid in x:
             prob += x[pid] == 0
 
+    # Transfer limit: keep at least (15 - max_transfers) of the current squad.
+    # Without this the "optimizer" simply rebuilds an ideal team from scratch and then
+    # reports however many changes that happens to imply — which is not transfer advice.
+    if current_squad_ids is not None and max_transfers is not None:
+        held = [x[pid] for pid in current_squad_ids if pid in x]
+        prob += pulp.lpSum(held) >= max(0, 15 - max_transfers)
+
     prob.solve(pulp.PULP_CBC_CMD(msg=0))
 
     squad, starters, captain_id = [], [], None
@@ -120,22 +133,45 @@ def optimize_squad(pool, budget=100.0, locked_ids=None, banned_ids=None):
 
 
 def best_transfers(pool, current_squad_ids, budget_bank, free_transfers=1, max_transfers=2):
-    """Given an existing squad + bank + free transfers, find the highest xP-gain transfer(s)
-    after accounting for the -4 hit per transfer beyond the free ones."""
+    """Given an existing squad + bank + free transfers, find the best transfer plan.
+
+    Evaluates 0, 1, ... up to max_transfers changes as genuinely separate constrained
+    problems, and scores each by the GAIN OVER DOING NOTHING minus the points hit.
+    A plan is only preferred if it actually beats holding your current squad.
+    """
     by_id = {p["id"]: p for p in pool}
-    current = [by_id[pid] for pid in current_squad_ids if pid in by_id]
-    current_cost = sum(p["cost"] for p in current)
+    current_ids = [pid for pid in current_squad_ids if pid in by_id]
+    current_cost = sum(by_id[pid]["cost"] for pid in current_ids)
     squad_budget = current_cost + budget_bank
 
-    best = None
-    for n_transfers in range(0, max_transfers + 1):
-        result = optimize_squad(pool, budget=squad_budget)
-        # Force it to differ by roughly n_transfers from current (soft check via overlap)
-        overlap = len(set(p["id"] for p in result["squad"]) & set(current_squad_ids))
-        actual_transfers = 15 - overlap
+    # Baseline: your squad exactly as-is (0 transfers), best XI/captain chosen from it.
+    baseline = optimize_squad(pool, budget=squad_budget,
+                               current_squad_ids=current_ids, max_transfers=0)
+    baseline_pts = baseline["predicted_gw_points"]
+
+    best = {**baseline, "transfers_made": 0, "hit_cost": 0, "net_gain": 0.0,
+            "transfers_in": [], "transfers_out": [], "baseline_points": baseline_pts}
+
+    for n in range(1, max_transfers + 1):
+        result = optimize_squad(pool, budget=squad_budget,
+                                 current_squad_ids=current_ids, max_transfers=n)
+        if result["status"] != "Optimal":
+            continue
+        new_ids = {p["id"] for p in result["squad"]}
+        actual_transfers = len(set(current_ids) - new_ids)
         hit = max(0, actual_transfers - free_transfers) * 4
-        net_gain = result["predicted_gw_points"] - hit
-        if best is None or net_gain > best["net_gain"]:
-            best = {**result, "transfers_made": actual_transfers, "hit_cost": hit,
-                    "net_gain": net_gain}
+        # Gain measured against holding, which is the decision you're actually making
+        net_gain = (result["predicted_gw_points"] - baseline_pts) - hit
+        if net_gain > best["net_gain"]:
+            out_ids = set(current_ids) - new_ids
+            in_ids = new_ids - set(current_ids)
+            best = {
+                **result,
+                "transfers_made": actual_transfers,
+                "hit_cost": hit,
+                "net_gain": round(net_gain, 2),
+                "transfers_out": [by_id[i] for i in out_ids],
+                "transfers_in": [by_id[i] for i in in_ids],
+                "baseline_points": baseline_pts,
+            }
     return best
