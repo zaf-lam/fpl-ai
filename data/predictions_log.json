@@ -831,8 +831,8 @@
   },
   {
     "gameweek": 6,
-    "logged_at": "2026-09-24T14:00:01.111426+00:00",
-    "predicted_points": 347.9,
+    "logged_at": "2026-10-01T15:58:27.826241+00:00",
+    "predicted_points": 338.0,
     "captain_id": 100,
     "captain_name": "Carvalho",
     "starters": [
@@ -843,28 +843,28 @@
         "predicted_xp": 10.63
       },
       {
-        "id": 8,
-        "name": "Calafiori",
-        "pos": "DEF",
-        "predicted_xp": 13.13
-      },
-      {
         "id": 115,
         "name": "De Cuyper",
         "pos": "DEF",
-        "predicted_xp": 12.54
+        "predicted_xp": 13.67
+      },
+      {
+        "id": 8,
+        "name": "Calafiori",
+        "pos": "DEF",
+        "predicted_xp": 12.29
       },
       {
         "id": 173,
         "name": "Thomas",
         "pos": "DEF",
-        "predicted_xp": 11.75
+        "predicted_xp": 11.46
       },
       {
         "id": 279,
         "name": "Ajayi",
         "pos": "DEF",
-        "predicted_xp": 9.79
+        "predicted_xp": 9.51
       },
       {
         "id": 100,
@@ -873,34 +873,34 @@
         "predicted_xp": 95.09
       },
       {
-        "id": 12,
-        "name": "Saka",
-        "pos": "MID",
-        "predicted_xp": 21.53
-      },
-      {
-        "id": 427,
-        "name": "Mbeumo",
-        "pos": "MID",
-        "predicted_xp": 21.18
-      },
-      {
         "id": 400,
         "name": "Doku",
         "pos": "MID",
         "predicted_xp": 21.07
       },
       {
+        "id": 12,
+        "name": "Saka",
+        "pos": "MID",
+        "predicted_xp": 19.23
+      },
+      {
+        "id": 427,
+        "name": "Mbeumo",
+        "pos": "MID",
+        "predicted_xp": 18.57
+      },
+      {
         "id": 426,
         "name": "B.Fernandes",
         "pos": "MID",
-        "predicted_xp": 20.56
+        "predicted_xp": 15.36
       },
       {
         "id": 249,
         "name": "Barry",
         "pos": "FWD",
-        "predicted_xp": 15.56
+        "predicted_xp": 16.03
       }
     ],
     "actual_points": null,
