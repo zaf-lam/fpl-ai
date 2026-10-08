@@ -831,8 +831,8 @@
   },
   {
     "gameweek": 6,
-    "logged_at": "2026-10-01T15:58:27.826241+00:00",
-    "predicted_points": 338.0,
+    "logged_at": "2026-10-08T16:06:00.533467+00:00",
+    "predicted_points": 355.4,
     "captain_id": 100,
     "captain_name": "Carvalho",
     "starters": [
@@ -846,49 +846,49 @@
         "id": 115,
         "name": "De Cuyper",
         "pos": "DEF",
-        "predicted_xp": 13.67
+        "predicted_xp": 14.62
       },
       {
         "id": 8,
         "name": "Calafiori",
         "pos": "DEF",
-        "predicted_xp": 12.29
+        "predicted_xp": 12.5
       },
       {
         "id": 173,
         "name": "Thomas",
         "pos": "DEF",
-        "predicted_xp": 11.46
+        "predicted_xp": 11.52
       },
       {
         "id": 279,
         "name": "Ajayi",
         "pos": "DEF",
-        "predicted_xp": 9.51
+        "predicted_xp": 9.47
       },
       {
         "id": 100,
         "name": "Carvalho",
         "pos": "MID",
-        "predicted_xp": 95.09
+        "predicted_xp": 102.68
       },
       {
         "id": 400,
         "name": "Doku",
         "pos": "MID",
-        "predicted_xp": 21.07
+        "predicted_xp": 22.59
       },
       {
         "id": 12,
         "name": "Saka",
         "pos": "MID",
-        "predicted_xp": 19.23
+        "predicted_xp": 20.51
       },
       {
         "id": 427,
         "name": "Mbeumo",
         "pos": "MID",
-        "predicted_xp": 18.57
+        "predicted_xp": 15.68
       },
       {
         "id": 426,
@@ -900,7 +900,7 @@
         "id": 249,
         "name": "Barry",
         "pos": "FWD",
-        "predicted_xp": 16.03
+        "predicted_xp": 17.11
       }
     ],
     "actual_points": null,
