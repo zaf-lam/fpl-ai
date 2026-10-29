@@ -1235,6 +1235,172 @@
         "predicted_xp": 15.04
       }
     ],
+    "actual_points": 14,
+    "actual_by_player": [
+      {
+        "id": 1,
+        "name": "Raya",
+        "pos": "GKP",
+        "predicted_xp": 12.94,
+        "actual": 7,
+        "error": -5.94
+      },
+      {
+        "id": 8,
+        "name": "Calafiori",
+        "pos": "DEF",
+        "predicted_xp": 17.93,
+        "actual": 1,
+        "error": -16.93
+      },
+      {
+        "id": 115,
+        "name": "De Cuyper",
+        "pos": "DEF",
+        "predicted_xp": 17.17,
+        "actual": 1,
+        "error": -16.17
+      },
+      {
+        "id": 173,
+        "name": "Thomas",
+        "pos": "DEF",
+        "predicted_xp": 14.04,
+        "actual": 1,
+        "error": -13.04
+      },
+      {
+        "id": 100,
+        "name": "Carvalho",
+        "pos": "MID",
+        "predicted_xp": 95.09,
+        "actual": 0,
+        "error": -95.09
+      },
+      {
+        "id": 123,
+        "name": "Hinshelwood",
+        "pos": "MID",
+        "predicted_xp": 26.26,
+        "actual": 1,
+        "error": -25.26
+      },
+      {
+        "id": 427,
+        "name": "Mbeumo",
+        "pos": "MID",
+        "predicted_xp": 24.78,
+        "actual": 2,
+        "error": -22.78
+      },
+      {
+        "id": 426,
+        "name": "B.Fernandes",
+        "pos": "MID",
+        "predicted_xp": 15.57,
+        "actual": 0,
+        "error": -15.57
+      },
+      {
+        "id": 154,
+        "name": "Palmer",
+        "pos": "MID",
+        "predicted_xp": 14.08,
+        "actual": -1,
+        "error": -15.08
+      },
+      {
+        "id": 249,
+        "name": "Barry",
+        "pos": "FWD",
+        "predicted_xp": 19.03,
+        "actual": 2,
+        "error": -17.03
+      },
+      {
+        "id": 165,
+        "name": "Jo\u00e3o Pedro",
+        "pos": "FWD",
+        "predicted_xp": 15.04,
+        "actual": 0,
+        "error": -15.04
+      }
+    ]
+  },
+  {
+    "gameweek": 9,
+    "logged_at": "2026-10-29T15:49:13.051277+00:00",
+    "predicted_points": 368.6,
+    "captain_id": 100,
+    "captain_name": "Carvalho",
+    "starters": [
+      {
+        "id": 1,
+        "name": "Raya",
+        "pos": "GKP",
+        "predicted_xp": 14.12
+      },
+      {
+        "id": 115,
+        "name": "De Cuyper",
+        "pos": "DEF",
+        "predicted_xp": 16.91
+      },
+      {
+        "id": 330,
+        "name": "Bogle",
+        "pos": "DEF",
+        "predicted_xp": 15.41
+      },
+      {
+        "id": 8,
+        "name": "Calafiori",
+        "pos": "DEF",
+        "predicted_xp": 12.74
+      },
+      {
+        "id": 100,
+        "name": "Carvalho",
+        "pos": "MID",
+        "predicted_xp": 95.09
+      },
+      {
+        "id": 68,
+        "name": "Tavernier",
+        "pos": "MID",
+        "predicted_xp": 23.45
+      },
+      {
+        "id": 427,
+        "name": "Mbeumo",
+        "pos": "MID",
+        "predicted_xp": 23.28
+      },
+      {
+        "id": 40,
+        "name": "Rogers",
+        "pos": "MID",
+        "predicted_xp": 16.9
+      },
+      {
+        "id": 124,
+        "name": "Gro\u00df",
+        "pos": "MID",
+        "predicted_xp": 15.26
+      },
+      {
+        "id": 411,
+        "name": "Haaland",
+        "pos": "FWD",
+        "predicted_xp": 24.31
+      },
+      {
+        "id": 346,
+        "name": "Calvert-Lewin",
+        "pos": "FWD",
+        "predicted_xp": 16.04
+      }
+    ],
     "actual_points": null,
     "actual_by_player": null
   }
