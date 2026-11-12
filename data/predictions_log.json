@@ -1567,6 +1567,172 @@
         "predicted_xp": 16.66
       }
     ],
+    "actual_points": 61,
+    "actual_by_player": [
+      {
+        "id": 1,
+        "name": "Raya",
+        "pos": "GKP",
+        "predicted_xp": 14.61,
+        "actual": 6,
+        "error": -8.61
+      },
+      {
+        "id": 115,
+        "name": "De Cuyper",
+        "pos": "DEF",
+        "predicted_xp": 17.78,
+        "actual": 6,
+        "error": -11.78
+      },
+      {
+        "id": 8,
+        "name": "Calafiori",
+        "pos": "DEF",
+        "predicted_xp": 17.66,
+        "actual": 6,
+        "error": -11.66
+      },
+      {
+        "id": 330,
+        "name": "Bogle",
+        "pos": "DEF",
+        "predicted_xp": 15.61,
+        "actual": 7,
+        "error": -8.61
+      },
+      {
+        "id": 77,
+        "name": "Adli",
+        "pos": "MID",
+        "predicted_xp": 28.64,
+        "actual": 1,
+        "error": -27.64
+      },
+      {
+        "id": 427,
+        "name": "Mbeumo",
+        "pos": "MID",
+        "predicted_xp": 22.44,
+        "actual": 2,
+        "error": -20.44
+      },
+      {
+        "id": 40,
+        "name": "Rogers",
+        "pos": "MID",
+        "predicted_xp": 19.76,
+        "actual": 2,
+        "error": -17.76
+      },
+      {
+        "id": 124,
+        "name": "Gro\u00df",
+        "pos": "MID",
+        "predicted_xp": 15.57,
+        "actual": 10,
+        "error": -5.57
+      },
+      {
+        "id": 411,
+        "name": "Haaland",
+        "pos": "FWD",
+        "predicted_xp": 23.92,
+        "actual": 2,
+        "error": -21.92
+      },
+      {
+        "id": 249,
+        "name": "Barry",
+        "pos": "FWD",
+        "predicted_xp": 23.8,
+        "actual": 16,
+        "error": -7.8
+      },
+      {
+        "id": 346,
+        "name": "Calvert-Lewin",
+        "pos": "FWD",
+        "predicted_xp": 16.66,
+        "actual": 2,
+        "error": -14.66
+      }
+    ]
+  },
+  {
+    "gameweek": 11,
+    "logged_at": "2026-11-12T17:19:03.737913+00:00",
+    "predicted_points": 261.3,
+    "captain_id": 77,
+    "captain_name": "Adli",
+    "starters": [
+      {
+        "id": 1,
+        "name": "Raya",
+        "pos": "GKP",
+        "predicted_xp": 15.77
+      },
+      {
+        "id": 115,
+        "name": "De Cuyper",
+        "pos": "DEF",
+        "predicted_xp": 18.88
+      },
+      {
+        "id": 330,
+        "name": "Bogle",
+        "pos": "DEF",
+        "predicted_xp": 17.92
+      },
+      {
+        "id": 8,
+        "name": "Calafiori",
+        "pos": "DEF",
+        "predicted_xp": 17.78
+      },
+      {
+        "id": 77,
+        "name": "Adli",
+        "pos": "MID",
+        "predicted_xp": 28.72
+      },
+      {
+        "id": 68,
+        "name": "Tavernier",
+        "pos": "MID",
+        "predicted_xp": 25.64
+      },
+      {
+        "id": 124,
+        "name": "Gro\u00df",
+        "pos": "MID",
+        "predicted_xp": 19.06
+      },
+      {
+        "id": 40,
+        "name": "Rogers",
+        "pos": "MID",
+        "predicted_xp": 19.05
+      },
+      {
+        "id": 249,
+        "name": "Barry",
+        "pos": "FWD",
+        "predicted_xp": 27.8
+      },
+      {
+        "id": 411,
+        "name": "Haaland",
+        "pos": "FWD",
+        "predicted_xp": 24.04
+      },
+      {
+        "id": 346,
+        "name": "Calvert-Lewin",
+        "pos": "FWD",
+        "predicted_xp": 17.9
+      }
+    ],
     "actual_points": null,
     "actual_by_player": null
   }
